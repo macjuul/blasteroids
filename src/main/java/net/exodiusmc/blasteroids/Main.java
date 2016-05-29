@@ -44,7 +44,7 @@ public class Main extends Application {
 	}
 	
 	public String getVersion() {
-		return "v1.0.0 ALPHA";
+		return "0.0.1 PRE-ALPHA";
 	}
 
 }
