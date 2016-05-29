@@ -18,7 +18,7 @@ public class MediaManager {
 	private MediaManager() {
 		this.players = new HashMap<String, MediaPlayer>();
 		this.images = new HashMap<String, Image>();
-		File resDir = new File(FileUtils.ResolveResource("").getFile());
+		File resDir = new File(FileUtils.ResolveResource("").getFile().replace("%20", " "));
 		
 		int changed = processRecursive(resDir);
 		
