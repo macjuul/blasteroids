@@ -3,7 +3,7 @@ package net.exodiusmc.blasteroids.layers;
 import javafx.scene.canvas.GraphicsContext;
 import net.exodiusmc.blasteroids.interfaces.Layer;
 
-public class GameLayer implements Layer {
+public class SpaceLayer implements Layer {
 
 	@Override
 	public boolean updateOnCover() {
@@ -14,6 +14,7 @@ public class GameLayer implements Layer {
 	@Override
 	public void update(double delta, long frame) {
 		// TODO Auto-generated method stub
+		
 	}
 
 	@Override

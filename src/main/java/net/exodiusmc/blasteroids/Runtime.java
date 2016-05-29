@@ -12,6 +12,22 @@ public class Runtime extends AnimationTimer {
 	private double delta = 0;
 	private GraphicsContext gfx;
 	private long frame;
+	
+	private Runtime() {}
+	
+	public static void initalize() {
+		initalize(-1);
+	}
+	
+	public static void initalize(float fps) {
+		Runtime r = new Runtime();
+		
+		if(fps >= 0) {
+			r.setTargetFPS(fps);
+		}
+		
+		r.start();
+	}
 
 	@Override
 	public void handle(long now) {
