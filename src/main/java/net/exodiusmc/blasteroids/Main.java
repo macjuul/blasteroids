@@ -6,6 +6,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import net.exodiusmc.blasteroids.manager.MediaManager;
 import net.exodiusmc.blasteroids.utils.FileUtils;
 
 public class Main extends Application {
@@ -17,9 +18,12 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage window) throws Exception {
+		// Store the window object;
 		this.window = window;
 		
+		// Initalize different functions
 		FileUtils.setResourceDirectory("net/exodiusmc/blasteroids");
+		MediaManager.initialize();
 		
 		StackPane pane = new StackPane();
 		Canvas cvs = new Canvas();
@@ -41,6 +45,10 @@ public class Main extends Application {
 		window.setTitle("Blasteroids " + getVersion());
 		
 		Logger.getLogger().info("Blasteroids version " + getVersion() + " successfully loaded!");
+		
+		new Runtime();
+		
+		Logger.getLogger().info("Runtime loaded");
 	}
 	
 	public String getVersion() {

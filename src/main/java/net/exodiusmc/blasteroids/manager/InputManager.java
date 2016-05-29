@@ -17,6 +17,8 @@ public class InputManager {
     private HashSet<MouseButton> buttons;
     
 	private InputManager(Stage win) {
+		this.keys = new HashSet<KeyCode>();
+		this.buttons = new HashSet<MouseButton>();
 		this.window = win;
 		this.keys = new HashSet<KeyCode>();
         

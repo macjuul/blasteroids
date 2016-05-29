@@ -24,5 +24,36 @@ public class FileUtils {
     public static Image LoadImage(String file) {
         return new Image(FileUtils.ResolveResource(file).toString());
     }
+    
+    public static String getFileExtension(String loc) {
+    	String extension;
+    	
+    	int i = loc.lastIndexOf('.');
+    	if (i >= 0) {
+    	    extension = loc.substring(i + 1);
+    	} else {
+    		extension = "";
+    	}
+    	
+    	return extension;
+    }
+    
+    public static String getFileName(String loc) {
+    	String name;
+    	
+    	int i = loc.lastIndexOf('.');
+    	if (i >= 0) {
+    		name = loc.substring(0, i);
+    	} else {
+    		name = "";
+    	}
+    	
+    	int j = name.lastIndexOf('\\');
+    	if (j >= 0) {
+    		name = name.substring(j + 1);
+    	}
+    	
+    	return name;
+    }
 }
 
