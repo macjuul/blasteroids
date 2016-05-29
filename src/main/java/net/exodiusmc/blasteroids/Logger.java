@@ -22,6 +22,7 @@ public class Logger {
 		return instance;
 	}
 	
+	@SuppressWarnings("deprecation")
 	private Logger() {
 		this.logfile = new File(filename);
 		
@@ -34,12 +35,15 @@ public class Logger {
 		}
 		
 		try {
-			this.writer = new BufferedWriter(new FileWriter(logfile, true));
+			this.writer = new BufferedWriter(new FileWriter(logfile, logfile.length() < 20480 /* 20 KB */));
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
+			Date d = new Date();
+			this.writer.newLine();
+			this.writer.write("********** Loading Blasteroids " + Main.getVersion() + " (" + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ") **********");
 			this.writer.newLine();
 		} catch (IOException e) {
 			e.printStackTrace();
