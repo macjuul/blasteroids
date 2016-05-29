@@ -38,7 +38,7 @@ public class Main extends Application {
 		window.setWidth(height * 1.4);
 		window.setHeight(height);
 		
-		window.getIcons().addAll(FileUtils.LoadImage("img/icon_128.png"), FileUtils.LoadImage("img/icon_32.png"), FileUtils.LoadImage("img/icon_16.png"));
+		window.getIcons().addAll(FileUtils.LoadImage("img/icons/icon_128.png"), FileUtils.LoadImage("img/icons/icon_32.png"), FileUtils.LoadImage("img/icons/icon_16.png"));
 		
 		window.show();
 		
