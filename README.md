@@ -1,3 +1,3 @@
 # Blasteroids
 
-Blasteroids is a 2D game that has a asteroid theme to it.
+Blasteroids is an asteroid-themed, 2D Game.
