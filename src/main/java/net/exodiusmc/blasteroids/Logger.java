@@ -34,8 +34,14 @@ public class Logger {
 		}
 		
 		try {
-			this.writer = new BufferedWriter(new FileWriter(logfile));
+			this.writer = new BufferedWriter(new FileWriter(logfile, true));
 		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			this.writer.newLine();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
