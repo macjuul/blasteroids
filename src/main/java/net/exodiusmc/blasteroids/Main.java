@@ -69,7 +69,7 @@ public class Main extends Application {
 	}
 	
 	public static String getVersion() {
-		return "0.0.1 PRE-ALPHA";
+		return "0.2 PRE-ALPHA";
 	}
 
 }
