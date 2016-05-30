@@ -2,6 +2,7 @@ package net.exodiusmc.blasteroids.enums;
 
 public enum LogLevel {
 	WARNING("[WARNING]"),
+	CRITICAL_ERROR("[CRITICAL-ERROR]"),
 	ERROR("[ERROR]"),
 	INFO("[INFO]"),
 	RUNTIME("[RUNTIME]"),

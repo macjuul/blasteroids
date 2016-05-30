@@ -9,6 +9,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import net.exodiusmc.blasteroids.Logger;
 
 public class InputManager {
 	private static InputManager instance;
@@ -51,6 +52,8 @@ public class InputManager {
 				buttons.remove(event.getButton());
 			}
         });
+        
+        Logger.getLogger().info("InputManager loaded!");
 	}
     
     public static InputManager getManager() {
@@ -60,7 +63,9 @@ public class InputManager {
     }
     
     public static void intialize(Stage win) {
-    	if(instance != null) throw new IllegalStateException("The input manager has already been initialized");
+    	if(instance != null) {
+    		Logger.getLogger().warn("Cannot initalize InputManager: Already initalized");
+    	}
     	
     	instance = new InputManager(win);
     }

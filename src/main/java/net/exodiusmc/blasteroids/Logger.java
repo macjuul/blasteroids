@@ -59,11 +59,13 @@ public class Logger {
 		Date d = new Date();
 		String msg = "[" + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + "] ";
 		boolean error = false;
+		boolean critical = false;
 		
 		for(LogLevel tag : tags) {
 			msg += tag.asTag() + " ";
 			
 			if(tag.equals(LogLevel.ERROR)) error = true;
+			if(tag.equals(LogLevel.CRITICAL_ERROR)) critical = true;
 		}
 		
 		msg += message;
@@ -80,6 +82,10 @@ public class Logger {
 			writer.flush();
 		} catch(IOException e) {
 			e.printStackTrace();
+		}
+		
+		if(critical) {
+			System.exit(0);
 		}
 	}
 	

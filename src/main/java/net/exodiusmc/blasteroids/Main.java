@@ -25,6 +25,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage window) throws Exception {
+		Logger.getLogger().info("Starting Blasteroids. Loading Main class...");
 		// Store the window object;
 		this.window = window;
 		
