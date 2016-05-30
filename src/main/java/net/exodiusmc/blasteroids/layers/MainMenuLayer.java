@@ -11,11 +11,9 @@ import net.exodiusmc.blasteroids.manager.MediaManager;
 public class MainMenuLayer implements Layer {
 
 	private Image logo;
-	private Image ship;
     
     public MainMenuLayer() {
 		this.logo = MediaManager.getManager().getImage("blasteroids_logo");
-		this.ship = MediaManager.getManager().getImage("logo_128");
 	}
 	
 	@Override
