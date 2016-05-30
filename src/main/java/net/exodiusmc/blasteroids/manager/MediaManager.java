@@ -22,12 +22,12 @@ public class MediaManager {
 		
 		int changed = processRecursive(resDir);
 		
-		Logger.getLogger().info("Loaded " + changed + " media resources");
+		Logger.getLogger().info("MediaManager loaded! " + changed + " media resources loaded");
 	}
 	
 	public static void initialize() {
 		if(instance != null) {
-    		throw new NullPointerException("The manager has already been initialized");
+			Logger.getLogger().warn("Cannot initalize MediaManager: Already initalized");
     	}
 		
 		instance = new MediaManager();

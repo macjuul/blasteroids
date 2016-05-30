@@ -2,6 +2,7 @@ package net.exodiusmc.blasteroids.manager;
 
 import java.util.ArrayList;
 
+import net.exodiusmc.blasteroids.Logger;
 import net.exodiusmc.blasteroids.interfaces.Layer;
 
 public class LayerManager {
@@ -10,6 +11,7 @@ public class LayerManager {
 	
 	private LayerManager() {
 		layerStack = new ArrayList<Layer>();
+		Logger.getLogger().info("LayerManager loaded!");
 	}
 	
 	public static LayerManager getManager() {
