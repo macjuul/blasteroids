@@ -1,6 +1,7 @@
 package net.exodiusmc.blasteroids;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.StackPane;
@@ -26,19 +27,8 @@ public class Main extends Application {
 		// Store the window object;
 		this.window = window;
 		
-		// Initalize different functions
-		FileUtils.setResourceDirectory("net/exodiusmc/blasteroids");
-		MediaManager.initialize();
-		Runtime.initalize();
-		
-		// Populize the window
-		StackPane pane = new StackPane();
-		Canvas cvs = new Canvas();
-		
-		pane.getChildren().add(cvs);
-		
-		Scene main = new Scene(pane);
-		window.setScene(main);
+		// Make it non-resizable
+		window.setResizable(false);
 		
 		// Set the window size
 		double height = Screen.getPrimary().getVisualBounds().getHeight() * 0.9;
@@ -47,6 +37,22 @@ public class Main extends Application {
 		window.setHeight(height);
 		Main.WIDTH = height * 1.4;
 		Main.HEIGHT = height;
+		
+		// Populize the window
+		StackPane pane = new StackPane();
+		Canvas cvs = new Canvas(WIDTH, HEIGHT);
+		
+		pane.setPadding(new Insets(29, 0, 0, 6));
+		
+		pane.getChildren().add(cvs);
+		
+		Scene main = new Scene(pane);
+		window.setScene(main);
+		
+		// Initalize different functions
+		FileUtils.setResourceDirectory("net/exodiusmc/blasteroids");
+		MediaManager.initialize();
+		Runtime.initalize(cvs.getGraphicsContext2D());
 		
 		// Add the layers
 		LayerManager.getManager().add(new SpaceLayer());

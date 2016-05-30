@@ -13,14 +13,16 @@ public class Runtime extends AnimationTimer {
 	private GraphicsContext gfx;
 	private long frame;
 	
-	private Runtime() {}
-	
-	public static void initalize() {
-		initalize(-1);
+	private Runtime(GraphicsContext gfx) {
+		this.gfx = gfx;
 	}
 	
-	public static void initalize(float fps) {
-		Runtime r = new Runtime();
+	public static void initalize(GraphicsContext gfx) {
+		initalize(gfx, -1);
+	}
+	
+	public static void initalize(GraphicsContext gfx, float fps) {
+		Runtime r = new Runtime(gfx);
 		
 		if(fps >= 0) {
 			r.setTargetFPS(fps);
