@@ -24,7 +24,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage window) throws Exception {
-		Logger.getLogger().info("Starting Blasteroids. Loading Main class...");
+		Logger.getLogger().info("Starting Blasteroids version " + getVersion());
 		// Store the window object;
 		this.window = window;
 		
@@ -63,7 +63,6 @@ public class Main extends Application {
 		window.getIcons().addAll(FileUtils.LoadImage("img/icons/icon_128.png"), FileUtils.LoadImage("img/icons/icon_32.png"), FileUtils.LoadImage("img/icons/icon_16.png"));
 		window.setTitle("Blasteroids " + getVersion());
 		window.show();
-		Logger.getLogger().info("Blasteroids version " + getVersion() + " successfully loaded!");
 	}
 	
 	public static String getVersion() {
