@@ -8,6 +8,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import net.exodiusmc.blasteroids.layers.GameLayer;
+import net.exodiusmc.blasteroids.layers.MainMenuLayer;
 import net.exodiusmc.blasteroids.layers.SpaceLayer;
 import net.exodiusmc.blasteroids.manager.LayerManager;
 import net.exodiusmc.blasteroids.manager.MediaManager;
@@ -57,6 +58,7 @@ public class Main extends Application {
 		
 		// Add the layers
 		LayerManager.getManager().add(new SpaceLayer());
+		LayerManager.getManager().add(new MainMenuLayer());
 		LayerManager.getManager().add(new GameLayer());
 		
 		// Complete window loading
@@ -66,7 +68,7 @@ public class Main extends Application {
 	}
 	
 	public static String getVersion() {
-		return "0.0.1 PRE-ALPHA";
+		return "0.2 PRE-ALPHA";
 	}
 
 }
