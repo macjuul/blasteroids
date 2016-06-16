@@ -70,7 +70,7 @@ public class Logger {
 		
 		msg += message;
 		
-		if(error) {
+		if(error || critical) {
 			System.err.println(msg);
 		} else {
 			System.out.println(msg);
