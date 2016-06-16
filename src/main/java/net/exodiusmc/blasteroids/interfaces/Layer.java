@@ -1,13 +1,16 @@
 package net.exodiusmc.blasteroids.interfaces;
 
 import javafx.scene.canvas.GraphicsContext;
+import net.exodiusmc.blasteroids.transition.Transition;
 
-public interface Layer {
-	public boolean updateOnCover();
+public abstract class Layer {
+	private Transition transition;
 	
-	public void update(double delta, long frame);
+	public abstract boolean updateOnCover();
 	
-	public void render(GraphicsContext gfx);
+	public abstract void update(double delta, long frame);
 	
-	public void dispose();
+	public abstract void render(GraphicsContext gfx);
+	
+	public abstract void dispose();
 }

@@ -3,7 +3,7 @@ package net.exodiusmc.blasteroids.layers;
 import javafx.scene.canvas.GraphicsContext;
 import net.exodiusmc.blasteroids.interfaces.Layer;
 
-public class GameLayer implements Layer {
+public class GameLayer extends Layer {
 
 	@Override
 	public boolean updateOnCover() {

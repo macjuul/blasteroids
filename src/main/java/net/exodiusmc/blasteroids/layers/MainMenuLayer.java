@@ -8,7 +8,7 @@ import javafx.scene.text.FontWeight;
 import net.exodiusmc.blasteroids.interfaces.Layer;
 import net.exodiusmc.blasteroids.manager.MediaManager;
 
-public class MainMenuLayer implements Layer {
+public class MainMenuLayer extends Layer {
 
 	private Image logo;
     
