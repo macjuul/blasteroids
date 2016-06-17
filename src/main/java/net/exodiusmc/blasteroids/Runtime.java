@@ -68,6 +68,7 @@ public class Runtime extends AnimationTimer {
 	        	l.render(this.gfx);
 	        	
 	        	if(l.hasTransition()) {
+	        		transition = l.transition;
 	        		transition.applyAfter(this.gfx, tick);
 	        		
 	        		if(transition.isCompleted()) {
