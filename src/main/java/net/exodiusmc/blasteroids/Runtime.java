@@ -43,16 +43,21 @@ public class Runtime extends AnimationTimer {
 	        
 	        for(int c = 0; c < stackSize; c++) {
 	        	Layer l = LayerManager.getManager().get(c);
+	        	Transition transition = null;
 	        	long tick = 0;
 	        	
 	        	if(l.hasTransition()) {
-	        		tick = l.transition.tick();
+	        		transition = l.transition;
+	        		tick = transition.tick();
 	        		
-	        		l.transition.applyBefore(this.gfx, tick);
+	        		transition.applyBefore(this.gfx, tick);
 	        		
-	        		if(l.transition.isCompleted()) {
-	        			callTransitionCallback(l.transition);
-	        			l.transition = null;
+	        		if(transition.isCompleted()) {
+	        			callTransitionCallback(transition);
+	        			
+	        			if(l.transition == transition) {
+	        				l.transition = null;
+	        			}
 	        		}
 	        	}
 	        	
@@ -63,11 +68,14 @@ public class Runtime extends AnimationTimer {
 	        	l.render(this.gfx);
 	        	
 	        	if(l.hasTransition()) {
-	        		l.transition.applyAfter(this.gfx, tick);
+	        		transition.applyAfter(this.gfx, tick);
 	        		
-	        		if(l.transition.isCompleted()) {
-	        			callTransitionCallback(l.transition);
-	        			l.transition = null;
+	        		if(transition.isCompleted()) {
+	        			callTransitionCallback(transition);
+	        			
+	        			if(l.transition == transition) {
+	        				l.transition = null;
+	        			}
 	        		}
 	        	}
 	        }

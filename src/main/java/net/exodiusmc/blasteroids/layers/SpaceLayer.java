@@ -45,8 +45,21 @@ public class SpaceLayer extends Layer {
 			xStart = (int) (((pos_x * 1.5) % spaceWidth) - spaceWidth);
 			yStart = (int) (((pos_y * 1.5) % spaceHeight) - spaceHeight);
 		} else if(this.state == SpaceState.INTRO) {
-			this.pos_y += 2;
+			this.vel_y += 0.013;
 			
+			if(this.vel_y > 2.5) this.vel_y = 2.5;
+			
+			this.pos_y += this.vel_y;
+			
+			yStart = (int) (((pos_y * 1.5) % spaceHeight) - spaceHeight);
+		} else if(this.state == SpaceState.STILL) {
+			this.vel_x *= 0.95;		
+			this.vel_y *= 0.95;
+			
+			this.pos_x += this.vel_x;
+			this.pos_y += this.vel_y;
+			
+			xStart = (int) (((pos_x * 1.5) % spaceWidth) - spaceWidth);
 			yStart = (int) (((pos_y * 1.5) % spaceHeight) - spaceHeight);
 		}
 	}
@@ -65,6 +78,10 @@ public class SpaceLayer extends Layer {
 	public void dispose() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void setState(SpaceState state) {
+		this.state = state;
 	}
 
 }

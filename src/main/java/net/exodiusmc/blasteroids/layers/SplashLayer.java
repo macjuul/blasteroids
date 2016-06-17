@@ -6,19 +6,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import net.exodiusmc.blasteroids.Layer;
 import net.exodiusmc.blasteroids.Main;
+import net.exodiusmc.blasteroids.enums.SpaceState;
 import net.exodiusmc.blasteroids.enums.TransitionType;
 import net.exodiusmc.blasteroids.manager.LayerManager;
 import net.exodiusmc.blasteroids.manager.MediaManager;
 import net.exodiusmc.blasteroids.transition.FadeIn;
+import net.exodiusmc.blasteroids.utils.GeneralUtils;
 
 public class SplashLayer extends Layer {
-	private Image exo;
-	private Image bith;
 	
 	public SplashLayer() {
-		this.exo = MediaManager.getManager().getImage("exodius");
-		this.bith = MediaManager.getManager().getImage("bitherus");
-		
 		this.applyTransition(TransitionType.HIDE);
 	} 
 
@@ -30,30 +27,32 @@ public class SplashLayer extends Layer {
 
 	@Override
 	public void update(double delta, long frame) {
-		if(frame == 20) {
-			this.applyTransition(TransitionType.FADE_IN);
-		} else if(frame == 180) {
+		if(frame == 80) {
+			FadeIn fit = (FadeIn) this.applyTransition(TransitionType.FADE_IN);
+			
+			fit.setFadeAmount(0.011);
+		} else if(frame == 200) {
 			this.applyTransition(TransitionType.FADE_OUT).setOnCompleted(() -> {
-				LayerManager.getManager().pop();
+				this.applyTransition(TransitionType.HIDE);
 				
-				MainMenuLayer menu = new MainMenuLayer();
-				
-				LayerManager.getManager().add(menu);
-				menu.applyTransition(TransitionType.FADE_IN);
+				GeneralUtils.setTimeout(1000L, () -> {
+					LayerManager.getManager().pop();
+					MainMenuLayer menu = new MainMenuLayer();
+					
+					menu.applyTransition(TransitionType.FADE_IN);
+					LayerManager.getManager().add(menu);
+				});
 			});
 		}
 	}
 	
 	@Override
 	public void render(GraphicsContext gfx) {
-		gfx.setFill(Color.WHITE);
-	    gfx.setLineWidth(0.1);
-	    Font roboto = Font.font("Roboto-Thin"/**, FontWeight.EXTRA_BOLD**/, 48 );
-	    gfx.setFont(roboto);
+		Image splash = MediaManager.getManager().getImage("splash");
+		double ratio = splash.getHeight() / splash.getWidth();
+		double width = Main.WIDTH * 0.8, height = width * ratio;
 		
-		gfx.drawImage(exo, Main.WIDTH-950, Main.HEIGHT/2-100);
-		gfx.drawImage(bith, Main.WIDTH-600, Main.HEIGHT/2-100);
-		gfx.fillText( "A GAME CREATED BY EXODIUS AND BITHERUS STUDIOS", 50, 250);
+		gfx.drawImage(splash, Main.WIDTH * 0.1, Main.HEIGHT - (Main.HEIGHT - (Main.HEIGHT - height) / 2), width, height);
 	}
 
 	@Override
