@@ -2,6 +2,7 @@ package net.exodiusmc.blasteroids;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
+import net.exodiusmc.blasteroids.layers.MainMenuLayer;
 import net.exodiusmc.blasteroids.manager.LayerManager;
 import net.exodiusmc.blasteroids.transition.Transition;
 
@@ -43,9 +44,8 @@ public class Runtime extends AnimationTimer {
 	        for(int c = 0; c < stackSize; c++) {
 	        	Layer l = LayerManager.getManager().get(c);
 	        	long tick = 0;
-	        	boolean transition = l.hasTransition();
 	        	
-	        	if(transition) {
+	        	if(l.hasTransition()) {
 	        		tick = l.transition.tick();
 	        		
 	        		l.transition.applyBefore(this.gfx, tick);
@@ -62,7 +62,7 @@ public class Runtime extends AnimationTimer {
 	        	
 	        	l.render(this.gfx);
 	        	
-	        	if(transition) {
+	        	if(l.hasTransition()) {
 	        		l.transition.applyAfter(this.gfx, tick);
 	        		
 	        		if(l.transition.isCompleted()) {

@@ -1,6 +1,5 @@
 package net.exodiusmc.blasteroids.enums;
 
-import net.exodiusmc.blasteroids.Logger;
 import net.exodiusmc.blasteroids.transition.FadeIn;
 import net.exodiusmc.blasteroids.transition.FadeOut;
 import net.exodiusmc.blasteroids.transition.Hide;
@@ -11,18 +10,13 @@ public enum TransitionType {
 	FADE_OUT(FadeOut.class),
 	HIDE(Hide.class);
 	
-	private Transition transition;
+	private Class<? extends Transition> clazz;
 	
 	private TransitionType(Class<? extends Transition> clazz) {
-		try {
-			this.transition = clazz.newInstance();
-		} catch (Exception e) {
-			Logger.getLogger().error("Could not init Transition");
-			e.printStackTrace();
-		}
+		this.clazz = clazz;
 	}
 	
-	public Transition getInstance() {
-		return transition;
+	public Class<? extends Transition> getTransitionClass() {
+		return clazz;
 	}
 }

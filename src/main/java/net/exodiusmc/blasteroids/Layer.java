@@ -16,7 +16,7 @@ public abstract class Layer {
 	public abstract void dispose();
 	
 	public Transition applyTransition(TransitionType t) {
-		this.transition = t.getInstance();
+		this.transition = ObjectFactory.newTransition(t);
 		
 		return this.transition;
 	}
