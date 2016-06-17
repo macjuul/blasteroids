@@ -4,9 +4,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import net.exodiusmc.blasteroids.Layer;
 import net.exodiusmc.blasteroids.Main;
-import net.exodiusmc.blasteroids.interfaces.Layer;
+import net.exodiusmc.blasteroids.enums.TransitionType;
+import net.exodiusmc.blasteroids.manager.LayerManager;
 import net.exodiusmc.blasteroids.manager.MediaManager;
+import net.exodiusmc.blasteroids.transition.FadeIn;
 
 public class SplashLayer extends Layer {
 	private Image exo;
@@ -15,6 +18,8 @@ public class SplashLayer extends Layer {
 	public SplashLayer() {
 		this.exo = MediaManager.getManager().getImage("exodius");
 		this.bith = MediaManager.getManager().getImage("bitherus");
+		
+		this.applyTransition(TransitionType.HIDE);
 	} 
 
 	
@@ -24,7 +29,15 @@ public class SplashLayer extends Layer {
 	}
 
 	@Override
-	public void update(double delta, long frame) {}
+	public void update(double delta, long frame) {
+		if(frame == 20) {
+			this.applyTransition(TransitionType.FADE_IN);
+		} else if(frame == 180) {
+			this.applyTransition(TransitionType.FADE_OUT).setOnCompleted(() -> {
+				LayerManager.getManager().pop();
+			});
+		}
+	}
 	
 	@Override
 	public void render(GraphicsContext gfx) {

@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import net.exodiusmc.blasteroids.Logger;
+import net.exodiusmc.blasteroids.enums.LogLevel;
 import net.exodiusmc.blasteroids.utils.FileUtils;
 
 public class MediaManager {
@@ -18,7 +19,9 @@ public class MediaManager {
 	private MediaManager() {
 		this.players = new HashMap<String, MediaPlayer>();
 		this.images = new HashMap<String, Image>();
-		File resDir = new File(FileUtils.ResolveResource("").getFile().replace("%20", " "));
+		File resDir = new File(FileUtils.ResolveResource("").getFile());
+		
+		Logger.getLogger().log("MediaManager path: " + FileUtils.ResolveResource("").getFile(), LogLevel.RUNTIME, LogLevel.WARNING);
 		
 		int changed = processRecursive(resDir);
 		
@@ -65,6 +68,11 @@ public class MediaManager {
     	int changed = 0;
 		try {
 			File[] files = dir.listFiles();
+			
+			if(files == null) {
+				Logger.getLogger().log("Unable to load Media resources", LogLevel.CRITICAL_ERROR);
+			}
+				
 			for (File file : files) {
 				if (file.isDirectory()) {
 					changed += processRecursive(file);

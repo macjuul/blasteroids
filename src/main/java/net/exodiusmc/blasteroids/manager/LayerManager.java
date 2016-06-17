@@ -2,8 +2,8 @@ package net.exodiusmc.blasteroids.manager;
 
 import java.util.ArrayList;
 
+import net.exodiusmc.blasteroids.Layer;
 import net.exodiusmc.blasteroids.Logger;
-import net.exodiusmc.blasteroids.interfaces.Layer;
 
 public class LayerManager {
 	private static LayerManager instance;

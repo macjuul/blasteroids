@@ -1,7 +1,7 @@
 package net.exodiusmc.blasteroids.layers;
 
 import javafx.scene.canvas.GraphicsContext;
-import net.exodiusmc.blasteroids.interfaces.Layer;
+import net.exodiusmc.blasteroids.Layer;
 
 public class GameLayer extends Layer {
 

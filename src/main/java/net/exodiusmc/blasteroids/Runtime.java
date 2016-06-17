@@ -2,8 +2,8 @@ package net.exodiusmc.blasteroids;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
-import net.exodiusmc.blasteroids.interfaces.Layer;
 import net.exodiusmc.blasteroids.manager.LayerManager;
+import net.exodiusmc.blasteroids.transition.Transition;
 
 public class Runtime extends AnimationTimer {
 	private long lastTime = System.nanoTime();
@@ -42,10 +42,34 @@ public class Runtime extends AnimationTimer {
 	        
 	        for(int c = 0; c < stackSize; c++) {
 	        	Layer l = LayerManager.getManager().get(c);
+	        	long tick = 0;
+	        	boolean transition = l.hasTransition();
+	        	
+	        	if(transition) {
+	        		tick = l.transition.tick();
+	        		
+	        		l.transition.applyBefore(this.gfx, tick);
+	        		
+	        		if(l.transition.isCompleted()) {
+	        			callTransitionCallback(l.transition);
+	        			l.transition = null;
+	        		}
+	        	}
+	        	
 	        	if((stackSize - 1 != c && l.updateOnCover()) || stackSize -1 == c) {
 	        		l.update(this.delta, this.frame);
 	        	}
+	        	
 	        	l.render(this.gfx);
+	        	
+	        	if(transition) {
+	        		l.transition.applyAfter(this.gfx, tick);
+	        		
+	        		if(l.transition.isCompleted()) {
+	        			callTransitionCallback(l.transition);
+	        			l.transition = null;
+	        		}
+	        	}
 	        }
 	        
 	        delta--;
@@ -59,5 +83,13 @@ public class Runtime extends AnimationTimer {
 	public void setTargetFPS(double fps) {
 		this.ns = 1000000000 / fps;  
 		this.delta = 0;
+	}
+	
+	private void callTransitionCallback(Transition t) {
+		Runnable r = t.getCallback();
+		
+		if(r != null) {
+			r.run();
+		}
 	}
 }

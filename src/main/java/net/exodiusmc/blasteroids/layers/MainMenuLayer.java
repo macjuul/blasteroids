@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import net.exodiusmc.blasteroids.interfaces.Layer;
+import net.exodiusmc.blasteroids.Layer;
 import net.exodiusmc.blasteroids.manager.MediaManager;
 
 public class MainMenuLayer extends Layer {
