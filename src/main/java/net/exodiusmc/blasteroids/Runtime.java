@@ -2,6 +2,7 @@ package net.exodiusmc.blasteroids;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import net.exodiusmc.blasteroids.manager.LayerManager;
 import net.exodiusmc.blasteroids.transition.Transition;
 
@@ -37,6 +38,9 @@ public class Runtime extends AnimationTimer {
 	    lastTime = now;
 	    if(delta >= 1){
 	        frame++;
+	        
+	        gfx.setFill(Color.BLACK);
+	        gfx.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
 	        
 	        int stackSize = LayerManager.getManager().size();
 	        

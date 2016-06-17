@@ -24,19 +24,19 @@ public class SplashLayer extends Layer {
 
 	@Override
 	public void update(double delta, long frame) {
-		if(frame == 80) {
+		if(frame == 70) {
 			FadeIn fit = (FadeIn) this.applyTransition(TransitionType.FADE_IN);
 			
-			fit.setFadeAmount(0.011);
-		} else if(frame == 200) {
+			fit.setFadeAmount(0.008);
+		} else if(frame == 230) {
 			this.applyTransition(TransitionType.FADE_OUT).setOnCompleted(() -> {
 				this.applyTransition(TransitionType.HIDE);
 				
-				GeneralUtils.setTimeout(1000L, () -> {
+				GeneralUtils.setTimeout(450L, () -> {
 					LayerManager.getManager().pop();
 					MainMenuLayer menu = new MainMenuLayer();
 					
-					menu.applyTransition(TransitionType.FADE_IN);
+					((FadeIn) menu.applyTransition(TransitionType.FADE_IN)).setFadeAmount(0.02);
 					LayerManager.getManager().add(menu);
 				});
 			});

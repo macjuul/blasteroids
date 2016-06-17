@@ -24,7 +24,7 @@ public class SpaceLayer extends Layer {
 		this.space = MediaManager.getManager().getImage("space");
 		this.spaceHeight = space.getHeight();
 		this.spaceWidth = space.getWidth();
-		this.state = SpaceState.INTRO;
+		this.state = SpaceState.SCROLL;
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class SpaceLayer extends Layer {
 			
 			xStart = (int) (((pos_x * 1.5) % spaceWidth) - spaceWidth);
 			yStart = (int) (((pos_y * 1.5) % spaceHeight) - spaceHeight);
-		} else if(this.state == SpaceState.INTRO) {
+		} else if(this.state == SpaceState.SCROLL) {
 			this.vel_y += 0.013;
 			
 			if(this.vel_y > 2.5) this.vel_y = 2.5;
@@ -81,6 +81,10 @@ public class SpaceLayer extends Layer {
 	
 	public void setState(SpaceState state) {
 		this.state = state;
+	}
+	
+	public void maxScrollSpeed() {
+		this.vel_y = 2.5;
 	}
 
 }
