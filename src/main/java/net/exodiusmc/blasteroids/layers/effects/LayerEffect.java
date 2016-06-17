@@ -1,8 +1,8 @@
-package net.exodiusmc.blasteroids.transition;
+package net.exodiusmc.blasteroids.layers.effects;
 
 import javafx.scene.canvas.GraphicsContext;
 
-public abstract class Transition {
+public abstract class LayerEffect {
 	private long ticks = 0;
 	private boolean completed = false;
 	private Runnable callback;

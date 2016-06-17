@@ -3,8 +3,8 @@ package net.exodiusmc.blasteroids;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import net.exodiusmc.blasteroids.layers.effects.LayerEffect;
 import net.exodiusmc.blasteroids.manager.LayerManager;
-import net.exodiusmc.blasteroids.transition.Transition;
 
 public class Runtime extends AnimationTimer {
 	private long lastTime = System.nanoTime();
@@ -46,7 +46,7 @@ public class Runtime extends AnimationTimer {
 	        
 	        for(int c = 0; c < stackSize; c++) {
 	        	Layer l = LayerManager.getManager().get(c);
-	        	Transition transition = null;
+	        	LayerEffect transition = null;
 	        	long tick = 0;
 	        	
 	        	if(l.hasTransition()) {
@@ -97,7 +97,7 @@ public class Runtime extends AnimationTimer {
 		this.delta = 0;
 	}
 	
-	private void callTransitionCallback(Transition t) {
+	private void callTransitionCallback(LayerEffect t) {
 		Runnable r = t.getCallback();
 		
 		if(r != null) {

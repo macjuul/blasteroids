@@ -1,9 +1,9 @@
-package net.exodiusmc.blasteroids.transition;
+package net.exodiusmc.blasteroids.layers.effects;
 
 import javafx.scene.canvas.GraphicsContext;
 
-public class FadeOut extends Transition {
-	private double fade = 1;
+public class FadeIn extends LayerEffect {
+	private double fade = 0;
 	private double fadeAmount = 0.01;
 
 	@Override
@@ -11,14 +11,14 @@ public class FadeOut extends Transition {
 		// Apply our fade effect
 		gfx.setGlobalAlpha(fade);
 		
-		this.fade -= this.fadeAmount;
+		this.fade += this.fadeAmount;
 	}
 	
 	@Override
 	public void applyAfter(GraphicsContext gfx, long ticks) {
 		gfx.setGlobalAlpha(1);	// Render everything after the Layer normally
 		
-		if(this.fade <= 0) {
+		if(this.fade >= 1) {
 			complete();
 		}
 	}
