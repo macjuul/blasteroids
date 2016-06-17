@@ -35,6 +35,11 @@ public class SplashLayer extends Layer {
 		} else if(frame == 180) {
 			this.applyTransition(TransitionType.FADE_OUT).setOnCompleted(() -> {
 				LayerManager.getManager().pop();
+				
+				MainMenuLayer menu = new MainMenuLayer();
+				
+				LayerManager.getManager().add(menu);
+				menu.applyTransition(TransitionType.FADE_IN);
 			});
 		}
 	}
