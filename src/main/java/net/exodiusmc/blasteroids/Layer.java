@@ -1,11 +1,11 @@
 package net.exodiusmc.blasteroids;
 
 import javafx.scene.canvas.GraphicsContext;
-import net.exodiusmc.blasteroids.enums.TransitionType;
-import net.exodiusmc.blasteroids.transition.Transition;
+import net.exodiusmc.blasteroids.enums.LayerEffectType;
+import net.exodiusmc.blasteroids.layers.effects.LayerEffect;
 
 public abstract class Layer {
-	public Transition transition;
+	public LayerEffect transition;
 	
 	public abstract boolean updateOnCover();
 	
@@ -15,8 +15,8 @@ public abstract class Layer {
 	
 	public abstract void dispose();
 	
-	public Transition applyTransition(TransitionType t) {
-		this.transition = ObjectFactory.newTransition(t);
+	public LayerEffect applyEffect(LayerEffectType t) {
+		this.transition = ObjectFactory.newLayerEffect(t);
 		
 		return this.transition;
 	}

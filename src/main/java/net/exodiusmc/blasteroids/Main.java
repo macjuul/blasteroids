@@ -7,8 +7,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import net.exodiusmc.blasteroids.enums.LayerEffectType;
 import net.exodiusmc.blasteroids.layers.SpaceLayer;
 import net.exodiusmc.blasteroids.layers.SplashLayer;
+import net.exodiusmc.blasteroids.layers.effects.FadeIn;
 import net.exodiusmc.blasteroids.manager.LayerManager;
 import net.exodiusmc.blasteroids.manager.MediaManager;
 import net.exodiusmc.blasteroids.utils.FileUtils;
@@ -75,8 +77,13 @@ public class Main extends Application {
 		Runtime.initalize(cvs.getGraphicsContext2D());
 		
 		// Add the layers
-		LayerManager.getManager().add(new SpaceLayer());
+		SpaceLayer space = new SpaceLayer();
+		
+		LayerManager.getManager().add(space);
 		LayerManager.getManager().add(new SplashLayer());
+		
+		space.maxScrollSpeed();
+		((FadeIn) space.applyEffect(LayerEffectType.FADE_IN)).setFadeAmount(0.006);
 		
 		// Complete window loading
 		window.getIcons().addAll(FileUtils.LoadImage("img/icons/icon_128.png"), FileUtils.LoadImage("img/icons/icon_32.png"), FileUtils.LoadImage("img/icons/icon_16.png"));

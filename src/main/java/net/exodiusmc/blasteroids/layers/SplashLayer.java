@@ -4,16 +4,16 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import net.exodiusmc.blasteroids.Layer;
 import net.exodiusmc.blasteroids.Main;
-import net.exodiusmc.blasteroids.enums.TransitionType;
+import net.exodiusmc.blasteroids.enums.LayerEffectType;
+import net.exodiusmc.blasteroids.layers.effects.FadeIn;
 import net.exodiusmc.blasteroids.manager.LayerManager;
 import net.exodiusmc.blasteroids.manager.MediaManager;
-import net.exodiusmc.blasteroids.transition.FadeIn;
 import net.exodiusmc.blasteroids.utils.GeneralUtils;
 
 public class SplashLayer extends Layer {
 	
 	public SplashLayer() {
-		this.applyTransition(TransitionType.HIDE);
+		this.applyEffect(LayerEffectType.HIDE);
 	} 
 
 	
@@ -24,19 +24,19 @@ public class SplashLayer extends Layer {
 
 	@Override
 	public void update(double delta, long frame) {
-		if(frame == 80) {
-			FadeIn fit = (FadeIn) this.applyTransition(TransitionType.FADE_IN);
+		if(frame == 70) {
+			FadeIn fit = (FadeIn) this.applyEffect(LayerEffectType.FADE_IN);
 			
-			fit.setFadeAmount(0.011);
-		} else if(frame == 200) {
-			this.applyTransition(TransitionType.FADE_OUT).setOnCompleted(() -> {
-				this.applyTransition(TransitionType.HIDE);
+			fit.setFadeAmount(0.008);
+		} else if(frame == 230) {
+			this.applyEffect(LayerEffectType.FADE_OUT).setOnCompleted(() -> {
+				this.applyEffect(LayerEffectType.HIDE);
 				
-				GeneralUtils.setTimeout(1000L, () -> {
+				GeneralUtils.setTimeout(450L, () -> {
 					LayerManager.getManager().pop();
 					MainMenuLayer menu = new MainMenuLayer();
 					
-					menu.applyTransition(TransitionType.FADE_IN);
+					((FadeIn) menu.applyEffect(LayerEffectType.FADE_IN)).setFadeAmount(0.02);
 					LayerManager.getManager().add(menu);
 				});
 			});

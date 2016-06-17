@@ -1,8 +1,8 @@
-package net.exodiusmc.blasteroids.transition;
+package net.exodiusmc.blasteroids.layers.effects;
 
 import javafx.scene.canvas.GraphicsContext;
 
-public class Hide extends Transition {
+public class Hide extends LayerEffect {
 
 	@Override
 	public void applyBefore(GraphicsContext gfx, long ticks) {
