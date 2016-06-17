@@ -17,21 +17,19 @@ public class MediaManager {
 	private MediaManager(String[] media) {
 		this.players = new HashMap<String, MediaPlayer>();
 		this.images = new HashMap<String, Image>();
-		File resDir = new File(FileUtils.ResolveResource("").getFile().replace("%20", " "));
 		int changed = 0;
 		
 		for(String m : media) {
-			String path = resDir + "\\" + m.replace("/", "\\");
+			String path = FileUtils.ResolveResource(m).toString();
 			String ext = FileUtils.getFileExtension(path);
 			String name = FileUtils.getFileName(path);
-			String uri = new File(path).toURI().toString();
 			
 			if(ext.equals("wav") || ext.equals("mp3")) {
-				this.players.put(name, new MediaPlayer(new Media(uri)));
+				this.players.put(name, new MediaPlayer(new Media(path)));
 				
 				changed++;
 			} else if(ext.equals("png")) {
-				this.images.put(name, new Image(uri));
+				this.images.put(name, new Image(path));
 				
 				changed++;
 			}
