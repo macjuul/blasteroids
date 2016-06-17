@@ -1,14 +1,12 @@
 package net.exodiusmc.blasteroids.manager;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import net.exodiusmc.blasteroids.Logger;
-import net.exodiusmc.blasteroids.enums.LogLevel;
 import net.exodiusmc.blasteroids.utils.FileUtils;
 
 public class MediaManager {
@@ -16,24 +14,38 @@ public class MediaManager {
 	private HashMap<String, MediaPlayer> players;
 	private HashMap<String, Image> images;
     
-	private MediaManager() {
+	private MediaManager(String[] media) {
 		this.players = new HashMap<String, MediaPlayer>();
 		this.images = new HashMap<String, Image>();
-		File resDir = new File(FileUtils.ResolveResource("").getFile());
+		File resDir = new File(FileUtils.ResolveResource("").getFile().replace("%20", " "));
+		int changed = 0;
 		
-		Logger.getLogger().log("MediaManager path: " + FileUtils.ResolveResource("").getFile(), LogLevel.RUNTIME, LogLevel.WARNING);
-		
-		int changed = processRecursive(resDir);
+		for(String m : media) {
+			String path = resDir + "\\" + m.replace("/", "\\");
+			String ext = FileUtils.getFileExtension(path);
+			String name = FileUtils.getFileName(path);
+			String uri = new File(path).toURI().toString();
+			
+			if(ext.equals("wav") || ext.equals("mp3")) {
+				this.players.put(name, new MediaPlayer(new Media(uri)));
+				
+				changed++;
+			} else if(ext.equals("png")) {
+				this.images.put(name, new Image(uri));
+				
+				changed++;
+			}
+		}
 		
 		Logger.getLogger().info("MediaManager loaded! " + changed + " media resources loaded");
 	}
 	
-	public static void initialize() {
+	public static void initialize(String[] media) {
 		if(instance != null) {
 			Logger.getLogger().warn("Cannot initalize MediaManager: Already initalized");
     	}
 		
-		instance = new MediaManager();
+		instance = new MediaManager(media);
 	}
     
     public static MediaManager getManager() {
@@ -63,38 +75,4 @@ public class MediaManager {
     	
     	return i;
     }
-    
-    private int processRecursive(File dir) {
-    	int changed = 0;
-		try {
-			File[] files = dir.listFiles();
-			
-			if(files == null) {
-				Logger.getLogger().log("Unable to load Media resources", LogLevel.CRITICAL_ERROR);
-			}
-				
-			for (File file : files) {
-				if (file.isDirectory()) {
-					changed += processRecursive(file);
-				} else {
-					String path = file.getCanonicalPath();
-					String ext = FileUtils.getFileExtension(path);
-					String name = FileUtils.getFileName(path);
-					
-					if(ext.equals("wav") || ext.equals("mp3")) {
-						this.players.put(name, new MediaPlayer(new Media(file.toURI().toString())));
-						
-						changed++;
-					} else if(ext.equals("png")) {
-						this.images.put(name, new Image(file.toURI().toString()));
-						
-						changed++;
-					}
-				}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return changed;
-	}
 }

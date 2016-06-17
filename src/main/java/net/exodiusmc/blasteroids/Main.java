@@ -52,7 +52,26 @@ public class Main extends Application {
 		
 		// Initialize different functions
 		FileUtils.setResourceDirectory("net/exodiusmc/blasteroids");
-		MediaManager.initialize();
+		MediaManager.initialize(new String[] {
+			"img/blasteroids_logo.png",
+			"img/logo_128.png",
+			"img/logo_32.png",
+			"img/space.png",
+			"img/splash.png",
+			"img/icons/icon_128.png",
+			"img/icons/icon_32.png",
+			"img/icons/icon_16.png",
+			"img/asteroids/asteroid_1.png",
+			"img/asteroids/asteroid_2.png",
+			"img/asteroids/asteroid_3.png",
+			"img/asteroids/asteroid_4.png",
+			"sounds/boost.wav",
+			"sounds/death.wav",
+			"sounds/gun.wav",
+			"sounds/select.wav",
+			"sounds/shoot.wav",
+			"sounds/music.mp3"
+		});
 		Runtime.initalize(cvs.getGraphicsContext2D());
 		
 		// Add the layers
