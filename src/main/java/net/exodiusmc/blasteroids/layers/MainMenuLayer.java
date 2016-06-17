@@ -2,20 +2,11 @@ package net.exodiusmc.blasteroids.layers;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import net.exodiusmc.blasteroids.Layer;
 import net.exodiusmc.blasteroids.Main;
 import net.exodiusmc.blasteroids.manager.MediaManager;
 
 public class MainMenuLayer extends Layer {
-
-	private Image logo;
-    
-    public MainMenuLayer() {
-		this.logo = MediaManager.getManager().getImage("blasteroids_logo");
-	}
 	
 	@Override
 	public boolean updateOnCover() {

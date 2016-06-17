@@ -16,5 +16,18 @@ public class Powerup extends Entity {
 		
 		new Powerup(t); 
 	}
+	
+	public void pickup() {
+		switch(this.type) {
+		case HEALTH_PACK:
+			break;
+		case SPEED_BOOST:
+			break;
+		case SUPER_BLASTER:
+			break;
+		default:
+			break;
+		}
+	}
 
 }

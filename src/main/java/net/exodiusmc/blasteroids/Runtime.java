@@ -2,7 +2,6 @@ package net.exodiusmc.blasteroids;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
-import net.exodiusmc.blasteroids.layers.MainMenuLayer;
 import net.exodiusmc.blasteroids.manager.LayerManager;
 import net.exodiusmc.blasteroids.transition.Transition;
 

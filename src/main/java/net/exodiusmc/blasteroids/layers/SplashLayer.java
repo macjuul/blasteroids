@@ -2,11 +2,8 @@ package net.exodiusmc.blasteroids.layers;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import net.exodiusmc.blasteroids.Layer;
 import net.exodiusmc.blasteroids.Main;
-import net.exodiusmc.blasteroids.enums.SpaceState;
 import net.exodiusmc.blasteroids.enums.TransitionType;
 import net.exodiusmc.blasteroids.manager.LayerManager;
 import net.exodiusmc.blasteroids.manager.MediaManager;

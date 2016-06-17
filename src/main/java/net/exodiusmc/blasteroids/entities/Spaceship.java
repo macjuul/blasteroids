@@ -1,8 +1,7 @@
 package net.exodiusmc.blasteroids.entities;
 
 public class Spaceship extends Entity {
-	private double angle;
-	private double velox;
-	private double voloy;
-
+	protected double angle;
+	protected double velox;
+	protected double voloy;
 }
