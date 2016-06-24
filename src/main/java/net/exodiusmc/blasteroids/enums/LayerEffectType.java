@@ -5,6 +5,9 @@ import net.exodiusmc.blasteroids.layers.effects.FadeOut;
 import net.exodiusmc.blasteroids.layers.effects.Hide;
 import net.exodiusmc.blasteroids.layers.effects.LayerEffect;
 
+/**
+ * Enum holding all LayerEffect types pointing to the Effect class
+ */
 public enum LayerEffectType {
 	FADE_IN(FadeIn.class),
 	FADE_OUT(FadeOut.class),

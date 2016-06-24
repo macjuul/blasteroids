@@ -1,5 +1,14 @@
 package net.exodiusmc.blasteroids.enums;
 
+/**
+ * LogLevels can be added to log messages to prefix the with handy meta information.
+ * The Logger class comes with some default log methods that will automatically
+ * insert one of these LogLevels.
+ * 
+ * To use custom LogLevels in your log message, use Logger#log(message, LogLevel...);
+ * 
+ * @see net.exodiusmc.blasteroids.Logger
+ */
 public enum LogLevel {
 	WARNING("[WARNING]"),
 	CRITICAL_ERROR("[CRITICAL-ERROR]"),

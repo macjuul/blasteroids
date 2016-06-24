@@ -3,6 +3,9 @@ package net.exodiusmc.blasteroids.entities;
 import net.exodiusmc.blasteroids.enums.PowerupType;
 import net.exodiusmc.blasteroids.utils.GeneralUtils;
 
+/**
+ * Represents a Powerup entity
+ */
 public class Powerup extends Entity {
 	private PowerupType type;
 	
