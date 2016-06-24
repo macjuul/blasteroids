@@ -40,7 +40,7 @@ public class Runtime extends AnimationTimer {
 	        frame++;
 	        
 	        gfx.setFill(Color.BLACK);
-	        gfx.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
+	        gfx.fillRect(-Main.WIDTH, -Main.HEIGHT, Main.WIDTH * 2, Main.HEIGHT * 2);
 	        
 	        int stackSize = LayerManager.getManager().size();
 	        

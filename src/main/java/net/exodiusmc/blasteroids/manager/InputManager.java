@@ -73,6 +73,23 @@ public class InputManager {
     public boolean isKeyPressed(KeyCode k) {
         return this.keys.contains(k);
     }
+    
+    public boolean isAnyKeyPressed(KeyCode[] kl) {
+    	for(KeyCode k : kl) {
+    		if(this.keys.contains(k)) return true;
+    	}
+        return false;
+    }
+    
+    public boolean areAllKeysPressed(KeyCode[] kl) {
+    	byte pressCount = 0;
+    	
+    	for(KeyCode k : kl) {
+    		if(this.keys.contains(k)) pressCount++;
+    	}
+        
+    	return pressCount == kl.length;
+    }
 
     public boolean isMouseButtonPressed(MouseButton b) {
         return this.buttons.contains(b);

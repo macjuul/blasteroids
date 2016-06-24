@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
 
+import javafx.application.Platform;
 import net.exodiusmc.blasteroids.enums.LogLevel;
 
 public class Logger {
@@ -35,14 +36,13 @@ public class Logger {
 		}
 		
 		try {
-			this.writer = new BufferedWriter(new FileWriter(logfile, logfile.length() < 20480 /* 20 KB */));
+			this.writer = new BufferedWriter(new FileWriter(logfile));
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
 			Date d = new Date();
-			this.writer.newLine();
 			this.writer.write("********** Loading Blasteroids " + Main.getVersion() + " (" + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ") **********");
 			this.writer.newLine();
 		} catch (IOException e) {
@@ -85,7 +85,7 @@ public class Logger {
 		}
 		
 		if(critical) {
-			System.exit(0);
+			Platform.exit();
 		}
 	}
 	
