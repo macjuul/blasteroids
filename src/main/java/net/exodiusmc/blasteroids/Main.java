@@ -1,12 +1,15 @@
 package net.exodiusmc.blasteroids;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import net.exodiusmc.blasteroids.enums.LayerEffectType;
 import net.exodiusmc.blasteroids.layers.SpaceLayer;
 import net.exodiusmc.blasteroids.layers.SplashLayer;
@@ -63,10 +66,16 @@ public class Main extends Application {
 			"img/icons/icon_128.png",
 			"img/icons/icon_32.png",
 			"img/icons/icon_16.png",
-			"img/asteroids/asteroid_1.png",
-			"img/asteroids/asteroid_2.png",
-			"img/asteroids/asteroid_3.png",
-			"img/asteroids/asteroid_4.png",
+			"img/asteroids/1.png",
+			"img/asteroids/2.png",
+			"img/asteroids/3.png",
+			"img/asteroids/4.png",
+			"img/ship/air_wing.png",
+			"img/ship/armageddon.png",
+			"img/ship/blue_bird.png",
+			"img/ship/default.png",
+			"img/ship/exo_fighter.png",
+			"img/ship/green_flame.png",
 			"sounds/boost.wav",
 			"sounds/death.wav",
 			"sounds/gun.wav",
@@ -89,6 +98,15 @@ public class Main extends Application {
 		window.getIcons().addAll(FileUtils.LoadImage("img/icons/icon_128.png"), FileUtils.LoadImage("img/icons/icon_32.png"), FileUtils.LoadImage("img/icons/icon_16.png"));
 		window.setTitle("Blasteroids " + getVersion());
 		window.show();
+		
+		// Make sure the game exits correctly
+		window.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			@Override public void handle(WindowEvent event) {
+				Logger.getLogger().info("Terminating Blasteroids " + getVersion());
+				Platform.exit();
+				System.exit(0);
+			}
+		});
 	}
 	
 	public static String getVersion() {
