@@ -5,6 +5,9 @@ public enum LogLevel {
 	CRITICAL_ERROR("[CRITICAL-ERROR]"),
 	ERROR("[ERROR]"),
 	INFO("[INFO]"),
+	LAYER("[LAYER]"),
+	INPUT("[INPUT]"),
+	MEDIA("[MEDIA]"),
 	RUNTIME("[RUNTIME]"),
 	RENDER("[RENDER]");
 	

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import net.exodiusmc.blasteroids.Layer;
 import net.exodiusmc.blasteroids.Logger;
+import net.exodiusmc.blasteroids.enums.LogLevel;
 
 public class LayerManager {
 	private static LayerManager instance;
@@ -39,6 +40,7 @@ public class LayerManager {
 	 */
 	public Layer add(Layer l) {
 		layerStack.add(l);
+		Logger.getLogger().log("Added new layer " +  this.getClass().getSimpleName() + "@" + this.hashCode(), LogLevel.INFO, LogLevel.LAYER);
 		return l;
 	}
 	
@@ -61,6 +63,7 @@ public class LayerManager {
 		Layer popped = this.layerStack.get(this.layerStack.size() - 1);
 		popped.dispose();
 		this.layerStack.remove(this.layerStack.size() - 1);
+		Logger.getLogger().log("Popped existing layer " +  this.getClass().getSimpleName() + "@" + this.hashCode(), LogLevel.INFO, LogLevel.LAYER);
 		return popped;
 	}
 	
@@ -72,5 +75,6 @@ public class LayerManager {
 			l.dispose();
 		}
 		this.layerStack.clear();
+		Logger.getLogger().log("Cleared the LayerStack", LogLevel.INFO, LogLevel.LAYER);
 	}
 }

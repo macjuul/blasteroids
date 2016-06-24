@@ -3,6 +3,7 @@ package net.exodiusmc.blasteroids;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import net.exodiusmc.blasteroids.enums.LogLevel;
 import net.exodiusmc.blasteroids.layers.effects.LayerEffect;
 import net.exodiusmc.blasteroids.manager.LayerManager;
 
@@ -28,6 +29,8 @@ public class Runtime extends AnimationTimer {
 		if(fps >= 0) {
 			r.setTargetFPS(fps);
 		}
+		
+		Logger.getLogger().log("Initalized Runtime; Invoking main game loop", LogLevel.INFO, LogLevel.RUNTIME);
 		
 		r.start();
 	}
@@ -95,6 +98,8 @@ public class Runtime extends AnimationTimer {
 	public void setTargetFPS(double fps) {
 		this.ns = 1000000000 / fps;  
 		this.delta = 0;
+		
+		Logger.getLogger().log("Altered target FPS: Game might become unstable", LogLevel.INFO, LogLevel.RUNTIME);
 	}
 	
 	private void callTransitionCallback(LayerEffect t) {
