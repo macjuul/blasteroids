@@ -5,6 +5,6 @@ public class Asteroid extends Entity {
 	private double speed;
 	private double size;
 	private int rotation;
-	
+	private byte type;
 
 }
