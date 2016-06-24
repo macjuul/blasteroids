@@ -48,7 +48,7 @@ public class FileUtils {
     		name = "";
     	}
     	
-    	int j = name.lastIndexOf('\\');
+    	int j = name.lastIndexOf('/');
     	if (j >= 0) {
     		name = name.substring(j + 1);
     	}

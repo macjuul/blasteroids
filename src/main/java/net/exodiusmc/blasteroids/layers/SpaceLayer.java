@@ -2,13 +2,14 @@ package net.exodiusmc.blasteroids.layers;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
+import net.exodiusmc.blasteroids.Layer;
 import net.exodiusmc.blasteroids.Main;
-import net.exodiusmc.blasteroids.interfaces.Layer;
+import net.exodiusmc.blasteroids.enums.SpaceState;
 import net.exodiusmc.blasteroids.manager.MediaManager;
 import net.exodiusmc.blasteroids.utils.GeneralUtils;
 
-public class SpaceLayer implements Layer {
+public class SpaceLayer extends Layer {
+	private SpaceState state;
 	private double spaceWidth;
     private double spaceHeight;
     private int xStart;
@@ -23,6 +24,7 @@ public class SpaceLayer implements Layer {
 		this.space = MediaManager.getManager().getImage("space");
 		this.spaceHeight = space.getHeight();
 		this.spaceWidth = space.getWidth();
+		this.state = SpaceState.SCROLL;
 	}
 
 	@Override
@@ -32,14 +34,33 @@ public class SpaceLayer implements Layer {
 
 	@Override
 	public void update(double delta, long frame) {
-		this.vel_x += GeneralUtils.randomDoubleInRange(-1, 1.02);		
-		this.vel_y += GeneralUtils.randomDoubleInRange(-1, 1.02);
-		
-		this.pos_x += this.vel_x;
-		this.pos_y += this.vel_y;
-		
-		xStart = (int) (((pos_x * 1.5) % spaceWidth) - spaceWidth);
-		yStart = (int) (((pos_y * 1.5) % spaceHeight) - spaceHeight);
+		if(this.state == SpaceState.INPUT) {
+			this.vel_x += GeneralUtils.randomDoubleInRange(-1, 1.02);		
+			this.vel_y += GeneralUtils.randomDoubleInRange(-1, 1.02);
+			
+			this.pos_x += this.vel_x;
+			this.pos_y += this.vel_y;
+			
+			xStart = (int) (((pos_x * 1.5) % spaceWidth) - spaceWidth);
+			yStart = (int) (((pos_y * 1.5) % spaceHeight) - spaceHeight);
+		} else if(this.state == SpaceState.SCROLL) {
+			this.vel_y += 0.013;
+			
+			if(this.vel_y > 2.5) this.vel_y = 2.5;
+			
+			this.pos_y += this.vel_y;
+			
+			yStart = (int) (((pos_y * 1.5) % spaceHeight) - spaceHeight);
+		} else if(this.state == SpaceState.STILL) {
+			this.vel_x *= 0.95;		
+			this.vel_y *= 0.95;
+			
+			this.pos_x += this.vel_x;
+			this.pos_y += this.vel_y;
+			
+			xStart = (int) (((pos_x * 1.5) % spaceWidth) - spaceWidth);
+			yStart = (int) (((pos_y * 1.5) % spaceHeight) - spaceHeight);
+		}
 	}
 
 	@Override
@@ -56,6 +77,14 @@ public class SpaceLayer implements Layer {
 	public void dispose() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void setState(SpaceState state) {
+		this.state = state;
+	}
+	
+	public void maxScrollSpeed() {
+		this.vel_y = 2.5;
 	}
 
 }

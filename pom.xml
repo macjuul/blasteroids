@@ -3,14 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>blasteroids</groupId>
     <artifactId>blasteroids</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.2.0-PRE-ALPHA</version>
     <name>Blasteroids</name>
     <description>An asteroids themed Java game</description>
-    
     <properties>
-    	<main.class>net.exodiusmc.blasteroids.Main</main.class>
+        <main.class>net.exodiusmc.blasteroids.Main</main.class>
     </properties>
-    
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -20,6 +18,12 @@
         </dependency>
     </dependencies>
     <build>
+    	<resources>
+	        <resource>
+	            <directory>src/main/resources/net/exodiusmc/blasteroids</directory>
+	            <filtering>true</filtering>
+	        </resource>
+	    </resources>
         <sourceDirectory>src</sourceDirectory>
         <plugins>
             <plugin>
