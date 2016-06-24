@@ -1,5 +1,10 @@
 package net.exodiusmc.blasteroids.enums;
 
+/**
+ * Represents a type of Powerup
+ * 
+ * @see net.exodiusmc.blasteroids.entities.Powerup
+ */
 public enum PowerupType {
 	HEALTH_PACK,		// Increases your HP
 	SPEED_BOOST,		// Increases your movement speed

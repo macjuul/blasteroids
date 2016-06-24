@@ -2,6 +2,9 @@ package net.exodiusmc.blasteroids;
 
 import javafx.scene.canvas.GraphicsContext;
 
+/**
+ * The Rectangle class represents a rectangle on the screen, created by giving 2 opposite corners.
+ */
 public class Rectangle {
 	private Location min;
 	private Location max;

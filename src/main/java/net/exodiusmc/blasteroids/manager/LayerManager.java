@@ -6,6 +6,10 @@ import net.exodiusmc.blasteroids.Layer;
 import net.exodiusmc.blasteroids.Logger;
 import net.exodiusmc.blasteroids.enums.LogLevel;
 
+/**
+ * The layer manager is used to alter the layers getting updated and rendered
+ * by the game.
+ */
 public class LayerManager {
 	private static LayerManager instance;
 	private ArrayList<Layer> layerStack;
@@ -15,6 +19,11 @@ public class LayerManager {
 		Logger.getLogger().info("LayerManager loaded!");
 	}
 	
+	/**
+	 * Returns the associated manager object
+	 * 
+	 * @return LayerManager
+	 */
 	public static LayerManager getManager() {
 		if(instance == null) {
 			instance = new LayerManager();
@@ -23,7 +32,7 @@ public class LayerManager {
 		return instance;
 	}
 	
-	/*
+	/**
 	 * Get the size of the layer stack
 	 * 
 	 * @return int Size
@@ -32,7 +41,7 @@ public class LayerManager {
 		return layerStack.size();
 	}
 	
-	/*
+	/**
 	 * Add a new layer to the layer stack. This layer will be added "on top" of the other layers
 	 * 
 	 * @param l Layer
@@ -44,7 +53,7 @@ public class LayerManager {
 		return l;
 	}
 	
-	/*
+	/**
 	 * Get the layer at the specified index
 	 * 
 	 * @param l Layer
@@ -54,7 +63,7 @@ public class LayerManager {
 		return layerStack.get(index);
 	}
 	
-	/*
+	/**
 	 * Pop the top most layer from the layer stack. Returns the popped layer
 	 * 
 	 * @return Layer
@@ -67,8 +76,8 @@ public class LayerManager {
 		return popped;
 	}
 	
-	/*
-	 * Clear the layer stack
+	/**
+	 * Clear the entire layer stack
 	 */
 	public void clear() {
 		for(Layer l : layerStack) {

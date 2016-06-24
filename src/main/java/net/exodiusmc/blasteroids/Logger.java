@@ -8,12 +8,21 @@ import java.util.Date;
 
 import net.exodiusmc.blasteroids.enums.LogLevel;
 
+/**
+ * The Logger class is used to log messages to the console and
+ * log file output.
+ */
 public class Logger {
 	private static String filename = "log.txt";
 	private static Logger instance;
 	private File logfile;
 	private BufferedWriter writer;
 	
+	/**
+	 * Returns the associated Logger object
+	 * 
+	 * @return Logger
+	 */
 	public static Logger getLogger() {
 		if(instance == null) {
 			instance = new Logger();
@@ -50,10 +59,22 @@ public class Logger {
 		}
 	}
 	
+	/**
+	 * Set the log destination of the logfile output
+	 * 
+	 * @param name String
+	 */
 	public static void setLogDestination(String name) {
 		filename = name;
 	}
 	
+	/**
+	 * Perform a basic log message. Custom LogLevels can be included to alter
+	 * the tags inserted before the message
+	 * 
+	 * @param message String
+	 * @param tags LogLevels
+	 */
 	@SuppressWarnings("deprecation")
 	public void log(String message, LogLevel... tags) {
 		Date d = new Date();
@@ -89,14 +110,29 @@ public class Logger {
 		}
 	}
 	
+	/**
+	 * Perform a warn log message. Alias to {@link Logger#log(String, LogLevel...)}
+	 * 
+	 * @param message String
+	 */
 	public void warn(String message) {
 		this.log(message, LogLevel.WARNING);
 	}
 	
+	/**
+	 * Perform an error log message. Alias to {@link Logger#log(String, LogLevel...)}
+	 * 
+	 * @param message String
+	 */
 	public void error(String message) {
 		this.log(message, LogLevel.ERROR);
 	}
 	
+	/**
+	 * Perform an info log message. Alias to {@link Logger#log(String, LogLevel...)}
+	 * 
+	 * @param message String
+	 */
 	public void info(String message) {
 		this.log(message, LogLevel.INFO);
 	}

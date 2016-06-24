@@ -6,14 +6,30 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * GeneralUtils contains utility methods for a bunch of handy things you might need to use
+ */
 public class GeneralUtils {
 	
+	/**
+	 * Delay a code from running
+	 * 
+	 * @param duration Long
+	 * @param csr Runnable
+	 */
 	public static void setTimeout(Long duration, Runnable csr) {
         final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         
         scheduler.schedule(csr, duration, TimeUnit.MILLISECONDS);
     }
     
+	/**
+	 * Simmilair to {@link GeneralUtils#setTimeout(Long, Runnable)} except
+	 * the method will keep being called instead of running once
+	 * 
+	 * @param delay Long
+	 * @param csr Runnable
+	 */
     public static void setInterval(Long delay, Runnable csr) {
         final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         

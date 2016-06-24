@@ -1,17 +1,20 @@
 package net.exodiusmc.blasteroids;
 
+/**
+ * Represents a Location in the game in a 2D area
+ */
 public class Location {
 	private double x;
 	private double y;
 	
-	/*
+	/**
 	 * Construct a new location zero location
 	 */
 	public Location() {
 		this(0, 0);
 	}
 	
-	/*
+	/**
 	 * Construct a new location from the given x and y units
 	 * 
 	 * @param x The x unit
@@ -22,7 +25,7 @@ public class Location {
 		this.y = y;
 	}
 	
-	/*
+	/**
 	 * Returns the X unit of this location
 	 * 
 	 * @return x unit
@@ -31,7 +34,7 @@ public class Location {
 		return this.x;
 	}
 	
-	/*
+	/**
 	 * Returns the Y unit of this location
 	 * 
 	 * @return y unit
@@ -40,7 +43,7 @@ public class Location {
 		return this.y;
 	}
 	
-	/*
+	/**
 	 * Change the X unit of this location
 	 * 
 	 * @param x X unit
@@ -49,7 +52,7 @@ public class Location {
 		this.x = x;
 	}
 
-	/*
+	/**
 	 * Change the Y unit of this location
 	 * 
 	 * @param y Y unit
@@ -58,7 +61,7 @@ public class Location {
 		this.y = y;
 	}
 	
-	/*
+	/**
 	 * Add the given X and Y units to the location
 	 * 
 	 * @param x X unit
@@ -71,7 +74,7 @@ public class Location {
 		return this;
 	}
 	
-	/*
+	/**
 	 * Subtract the given X and Y units from the location
 	 * 
 	 * @param x X unit
@@ -85,7 +88,7 @@ public class Location {
 	}
 	
 	
-	/*
+	/**
 	 * Performs scalar multiplication, multiplying X and Y with the provided unit
 	 * 
 	 * @param amount The unit to multiply with
@@ -97,7 +100,7 @@ public class Location {
 		return this;
 	}
 	
-	/*
+	/**
 	 * Performs multiple scalar multiplication, multiplying X and Y with the provided units
 	 * 
 	 * @param amount The unit to multiply X with
@@ -110,7 +113,7 @@ public class Location {
 		return this;
 	}
 	
-	/*
+	/**
 	 * Resets the location to a zero location
 	 * 
 	 * @return Location
@@ -121,7 +124,7 @@ public class Location {
 		return this;
 	}
 	
-	/*
+	/**
 	 * Construct a new zero location
 	 * 
 	 * @return Location
@@ -130,7 +133,7 @@ public class Location {
 		return new Location(0, 0);
 	}
 	
-	/*
+	/**
 	 * Calculates the distance between this and another location
 	 * 
 	 * @param location The second location
@@ -144,7 +147,7 @@ public class Location {
 		return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
 	}
 	
-	/*
+	/**
 	 * Returns the angle in degrees between the current location and
 	 * the target location in degrees
 	 * 

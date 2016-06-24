@@ -52,7 +52,7 @@ public class Runtime extends AnimationTimer {
 	        	LayerEffect transition = null;
 	        	long tick = 0;
 	        	
-	        	if(l.hasTransition()) {
+	        	if(l.hasLayerEffect()) {
 	        		transition = l.transition;
 	        		tick = transition.tick();
 	        		
@@ -73,7 +73,7 @@ public class Runtime extends AnimationTimer {
 	        	
 	        	l.render(this.gfx);
 	        	
-	        	if(l.hasTransition()) {
+	        	if(l.hasLayerEffect()) {
 	        		transition = l.transition;
 	        		transition.applyAfter(this.gfx, tick);
 	        		

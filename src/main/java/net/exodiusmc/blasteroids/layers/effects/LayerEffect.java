@@ -2,6 +2,13 @@ package net.exodiusmc.blasteroids.layers.effects;
 
 import javafx.scene.canvas.GraphicsContext;
 
+/**
+ * LayerEffects can be applied to layers to alter their behavoir. You can use this
+ * to create seamless transitions between layer changes
+ * 
+ * @author julian
+ * @see net.exodiusmc.blasteroids.enums.LayerEffectType
+ */
 public abstract class LayerEffect {
 	private long ticks = 0;
 	private boolean completed = false;

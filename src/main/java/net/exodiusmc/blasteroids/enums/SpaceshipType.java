@@ -3,6 +3,9 @@ package net.exodiusmc.blasteroids.enums;
 import javafx.scene.image.Image;
 import net.exodiusmc.blasteroids.manager.MediaManager;
 
+/**
+ * Represents a spaceship skin
+ */
 public enum SpaceshipType {
 	DEFAULT("default"),
 	BLUE_BIRD("blue_bird"),

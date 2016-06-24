@@ -3,6 +3,9 @@ package net.exodiusmc.blasteroids;
 import javafx.scene.image.Image;
 import net.exodiusmc.blasteroids.utils.RenderUtils;
 
+/**
+ * A SpriteAnimation is an image containing multiple images that can be iterated over, creating an animation
+ */
 public class SpriteAnimation {
 	private Image img;
 	private boolean horizontal;
@@ -36,23 +39,45 @@ public class SpriteAnimation {
 		}
 	}
 	
+	/**
+	 * Sets the image used for the sprite animation
+	 * 
+	 * @param img Image
+	 */
 	public void setImage(Image img) {
 		this.img = img;
 	}
 	
+	/**
+	 * Returns the image used for the sprite animation
+	 * 
+	 * @return Image
+	 */
 	public Image getImage() {
 		return this.img;
 	}
 	
+	/**
+	 * Sets a custom order of sprite iteration
+	 * 
+	 * @param order int[]
+	 */
 	public void setSpriteOrder(int[] order) {
 		this.customFrameOrder = true;
 		this.frameOrder = order;
 	}
 	
+	/**
+	 * Returns the current sprite order
+	 * @return
+	 */
 	public int[] getSpriteOrder() {
 		return this.frameOrder;
 	}
 	
+	/**
+	 * Resets the sprite animation to the first frame
+	 */
 	public void reset() {
 		this.currentFrame = 0;
 		if(this.customFrameOrder) {
@@ -60,6 +85,11 @@ public class SpriteAnimation {
 		}
 	}
 	
+	/**
+	 * Sets the current frame used in the sprite animation
+	 * 
+	 * @param frame int
+	 */
 	public void setCurrentFrame(int frame) {
 		if(frame < 0 || frame > this.frames) {
 			throw new IllegalArgumentException("Frame must be between 0 and max frame (" + this.frames + ")");
@@ -67,10 +97,21 @@ public class SpriteAnimation {
 		this.currentFrame = frame;
 	}
 	
+	/**
+	 * Tells the SpriteAnimation to move to the next frame, and return the Image for the next frame
+	 * 
+	 * @return Image
+	 */
 	public Image nextFrame() {
 		return nextFrame(true);
 	}
 	
+	/**
+	 * Tells the SpriteAnimation to move to the next frame, and return the Image for the next frame.
+	 * If update is false it will instead return the current frame
+	 * 
+	 * @return Image
+	 */
 	public Image nextFrame(boolean update) {
 		Image sub;
 		if(this.horizontal) {
