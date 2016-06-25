@@ -38,7 +38,7 @@ public class SplashLayer extends Layer {
 				
 				GeneralUtils.setTimeout(450L, () -> {
 					LayerManager.getManager().pop();
-					MainMenuLayer menu = new MainMenuLayer();
+					MenuLayer menu = new MenuLayer();
 					
 					((FadeIn) menu.applyEffect(LayerEffectType.FADE_IN)).setFadeAmount(0.02);
 					LayerManager.getManager().add(menu);
@@ -56,7 +56,7 @@ public class SplashLayer extends Layer {
 								}
 							});
 							
-							MainMenuLayer menu2 = new MainMenuLayer();
+							MenuLayer menu2 = new MenuLayer();
 							LayerManager.getManager().add(menu2);
 							
 							SlideFromRight str = (SlideFromRight) menu2.applyEffect(LayerEffectType.SLIDE_FROM_RIGHT);

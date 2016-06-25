@@ -1,5 +1,6 @@
 package net.exodiusmc.blasteroids.layers;
 
+import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -11,12 +12,12 @@ import net.exodiusmc.blasteroids.manager.InputManager;
 import net.exodiusmc.blasteroids.manager.MediaManager;
 import net.exodiusmc.blasteroids.utils.GeneralUtils;
 
-public class MainMenuLayer extends Layer {
+public class MenuLayer extends Layer {
 	byte item = 0, shiftDelay = 0;
 	boolean clicked = false;
 	InputManager input;
 	
-	public MainMenuLayer() {
+	public MenuLayer() {
 		input = InputManager.getManager();
 	}
 	
@@ -43,7 +44,21 @@ public class MainMenuLayer extends Layer {
 		}
 		
 		if(input.isAnyKeyPressed(new KeyCode[] {KeyCode.SPACE, KeyCode.ENTER})) {
-			
+			switch(item) {
+			case 0:	// Start game
+				
+				break;
+			case 1:	// Settings
+				
+				break;
+			case 2:	// About
+				
+				break;
+			case 3:	// Quit game
+				Platform.exit();
+				System.exit(0);
+				break;
+			}
 		}
 	}
 
