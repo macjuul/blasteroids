@@ -6,10 +6,8 @@ import net.exodiusmc.blasteroids.Layer;
 import net.exodiusmc.blasteroids.Main;
 import net.exodiusmc.blasteroids.enums.LayerEffectType;
 import net.exodiusmc.blasteroids.layers.effects.FadeIn;
-import net.exodiusmc.blasteroids.layers.effects.SlideFromLeft;
-import net.exodiusmc.blasteroids.layers.effects.SlideFromRight;
-import net.exodiusmc.blasteroids.layers.effects.SlideToLeft;
-import net.exodiusmc.blasteroids.layers.effects.SlideToRight;
+import net.exodiusmc.blasteroids.layers.effects.SlideFromBottom;
+import net.exodiusmc.blasteroids.layers.effects.SlideToTop;
 import net.exodiusmc.blasteroids.manager.LayerManager;
 import net.exodiusmc.blasteroids.manager.MediaManager;
 import net.exodiusmc.blasteroids.utils.GeneralUtils;
@@ -47,7 +45,7 @@ public class SplashLayer extends Layer {
 
 						@Override
 						public void run() {
-							SlideToLeft sfl = (SlideToLeft) menu.applyEffect(LayerEffectType.SLIDE_TO_LEFT);
+							SlideToTop sfl = (SlideToTop) menu.applyEffect(LayerEffectType.SLIDE_TO_TOP);
 							sfl.setSlideAmount(45);
 							sfl.setOnCompleted(new Runnable() {
 								@Override
@@ -59,7 +57,7 @@ public class SplashLayer extends Layer {
 							MenuLayer menu2 = new MenuLayer();
 							LayerManager.getManager().add(menu2);
 							
-							SlideFromRight str = (SlideFromRight) menu2.applyEffect(LayerEffectType.SLIDE_FROM_RIGHT);
+							SlideFromBottom str = (SlideFromBottom) menu2.applyEffect(LayerEffectType.SLIDE_FROM_BOTTOM);
 							str.setSlideAmount(45);
 						}
 						
