@@ -4,6 +4,8 @@ import net.exodiusmc.blasteroids.layers.effects.FadeIn;
 import net.exodiusmc.blasteroids.layers.effects.FadeOut;
 import net.exodiusmc.blasteroids.layers.effects.Hide;
 import net.exodiusmc.blasteroids.layers.effects.LayerEffect;
+import net.exodiusmc.blasteroids.layers.effects.SlideFromLeft;
+import net.exodiusmc.blasteroids.layers.effects.SlideToRight;
 
 /**
  * Enum holding all LayerEffect types pointing to the Effect class
@@ -11,7 +13,9 @@ import net.exodiusmc.blasteroids.layers.effects.LayerEffect;
 public enum LayerEffectType {
 	FADE_IN(FadeIn.class),
 	FADE_OUT(FadeOut.class),
-	HIDE(Hide.class);
+	HIDE(Hide.class),
+	SLIDE_TO_RIGHT(SlideToRight.class),
+	SLIDE_FROM_LEFT(SlideFromLeft.class);
 	
 	private Class<? extends LayerEffect> clazz;
 	
