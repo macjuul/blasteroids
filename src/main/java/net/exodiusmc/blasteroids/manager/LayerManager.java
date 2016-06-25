@@ -50,7 +50,7 @@ public class LayerManager {
 	 */
 	public Layer add(Layer l) {
 		layerStack.add(l);
-		Logger.getLogger().log("Added new layer " +  this.getClass().getSimpleName() + "@" + this.hashCode(), LogLevel.INFO, LogLevel.LAYER);
+		Logger.getLogger().log("Added new layer " + l.toString(), LogLevel.INFO, LogLevel.LAYER);
 		return l;
 	}
 	
@@ -89,9 +89,9 @@ public class LayerManager {
 	 */
 	public Layer pop() {
 		Layer popped = this.layerStack.get(this.layerStack.size() - 1);
-		popped.dispose();
-		this.layerStack.get(this.layerStack.size() - 1).shouldBeRemoved = true;
-		Logger.getLogger().log("Popped existing layer " +  this.getClass().getSimpleName() + "@" + this.hashCode(), LogLevel.INFO, LogLevel.LAYER);
+		popped.shouldBeRemoved = true;
+		
+		Logger.getLogger().log("Popped existing layer " + popped.toString(), LogLevel.INFO, LogLevel.LAYER);
 		return popped;
 	}
 	
@@ -100,10 +100,35 @@ public class LayerManager {
 	 */
 	public void clear() {
 		for(Layer l : layerStack) {
-			l.dispose();
+			l.shouldBeRemoved = true;
 		}
-		this.layerStack.clear();
 		Logger.getLogger().log("Cleared the LayerStack", LogLevel.INFO, LogLevel.LAYER);
+	}
+	
+	/**
+	 * Returns the top most Layer on the stack. If no layer can be found will return null instead
+	 * 
+	 * @return Layer
+	 */
+	public Layer getTopLayer() {
+		try {
+			return this.layerStack.get(this.layerStack.size() - 1);
+		} catch(IndexOutOfBoundsException e) {
+			return null;
+		}
+	}
+	
+	/**
+	 * Returns the bottom most Layer on the stack. If no layer can be found will return null instead
+	 * 
+	 * @return Layer
+	 */
+	public Layer getBottomLayer() {
+		try {
+			return this.layerStack.get(0);
+		} catch(IndexOutOfBoundsException e) {
+			return null;
+		}
 	}
 	
 	/**
@@ -118,7 +143,10 @@ public class LayerManager {
 		while(i.hasNext()) {
 			Layer l = i.next();
 			
-			if(l.shouldBeRemoved) i.remove();
+			if(l.shouldBeRemoved) {
+				l.dispose();
+				i.remove();
+			}
 		}
 	}
 }

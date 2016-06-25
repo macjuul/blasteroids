@@ -4,6 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import net.exodiusmc.blasteroids.enums.LayerEffectType;
 import net.exodiusmc.blasteroids.enums.LogLevel;
 import net.exodiusmc.blasteroids.layers.effects.LayerEffect;
+import net.exodiusmc.blasteroids.manager.LayerManager;
 
 /**
  * A Layer is an object that can be added to the layer stack and will be
@@ -66,7 +67,7 @@ public abstract class Layer {
 	public LayerEffect applyEffect(LayerEffectType t) {
 		this.transition = ObjectFactory.newLayerEffect(t);
 		
-		Logger.getLogger().log("Applied " + t.name() + " LayerEffect to " + this.getClass().getSimpleName() + "@" + this.hashCode(), LogLevel.INFO, LogLevel.LAYER);
+		Logger.getLogger().log("Applied " + t.name() + " LayerEffect to " + this.toString(), LogLevel.INFO, LogLevel.LAYER);
 		
 		return this.transition;
 	}
@@ -114,5 +115,19 @@ public abstract class Layer {
 	 */
 	public void setOffsetY(double a) {
 		this.offset_y = a;
+	}
+	
+	/**
+	 * Checks if the layer is the top most layer in the stack
+	 * 
+	 * @return Boolean
+	 */
+	public boolean isOnTop() {
+		return LayerManager.getManager().getTopLayer() == this;
+	}
+	
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName() + "@" + this.hashCode();
 	}
 }

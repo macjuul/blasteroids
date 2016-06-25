@@ -45,7 +45,7 @@ public class SplashLayer extends Layer {
 
 						@Override
 						public void run() {
-							SlideToRight str = (SlideToRight) menu.applyEffect(LayerEffectType.SLIDE_TO_RIGHT);
+							SlideToRight str = (SlideToRight) menu.applyEffect(LayerEffectType.SLIDE_FROM_RIGHT);
 							str.setSlideAmount(27);
 							str.setOnCompleted(new Runnable() {
 								@Override
@@ -54,11 +54,11 @@ public class SplashLayer extends Layer {
 								}
 							});
 							
-							MainMenuLayer menu2 = new MainMenuLayer();
-							LayerManager.getManager().add(menu2);
-							
-							SlideFromLeft sfl = (SlideFromLeft) menu2.applyEffect(LayerEffectType.SLIDE_FROM_LEFT);
-							sfl.setSlideAmount(27);
+//							MainMenuLayer menu2 = new MainMenuLayer();
+//							LayerManager.getManager().add(menu2);
+//							
+//							SlideFromLeft sfl = (SlideFromLeft) menu2.applyEffect(LayerEffectType.SLIDE_TO_RIGHT);
+//							sfl.setSlideAmount(27);
 						}
 						
 					});
