@@ -92,6 +92,10 @@ public class Main extends Application {
 			"sounds/music.mp3"
 		});
 		
+		if(DEV_MODE) {
+			Logger.getLogger().warn("DEV_MODE is enabled: additional debug messages might be logged");
+		}
+		
 		Runtime.initalize(cvs.getGraphicsContext2D());
 		InputManager.intialize(window);
 		
@@ -115,10 +119,6 @@ public class Main extends Application {
 			Platform.exit();
 			System.exit(0);
 		});
-		
-		if(DEV_MODE) {
-			Logger.getLogger().warn("### DEV_MODE is set to true! Dev shortcuts & debug messages are now enabled ###");
-		}
 	}
 	
 	public static String getVersion() {
