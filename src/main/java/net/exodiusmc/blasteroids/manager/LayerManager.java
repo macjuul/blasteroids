@@ -1,6 +1,7 @@
 package net.exodiusmc.blasteroids.manager;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import net.exodiusmc.blasteroids.Layer;
 import net.exodiusmc.blasteroids.Logger;
@@ -64,6 +65,24 @@ public class LayerManager {
 	}
 	
 	/**
+	 * Remove a layer from the layer stack
+	 * 
+	 * @param index int
+	 */
+	public void remove(int index) {
+		layerStack.get(index).shouldBeRemoved = true;
+	}
+	
+	/**
+	 * Remove a layer from the layer stack
+	 * 
+	 * @param layer Layer
+	 */
+	public void remove(Layer layer) {
+		layer.shouldBeRemoved = true;
+	}
+	
+	/**
 	 * Pop the top most layer from the layer stack. Returns the popped layer
 	 * 
 	 * @return Layer
@@ -71,7 +90,7 @@ public class LayerManager {
 	public Layer pop() {
 		Layer popped = this.layerStack.get(this.layerStack.size() - 1);
 		popped.dispose();
-		this.layerStack.remove(this.layerStack.size() - 1);
+		this.layerStack.get(this.layerStack.size() - 1).shouldBeRemoved = true;
 		Logger.getLogger().log("Popped existing layer " +  this.getClass().getSimpleName() + "@" + this.hashCode(), LogLevel.INFO, LogLevel.LAYER);
 		return popped;
 	}
@@ -85,5 +104,21 @@ public class LayerManager {
 		}
 		this.layerStack.clear();
 		Logger.getLogger().log("Cleared the LayerStack", LogLevel.INFO, LogLevel.LAYER);
+	}
+	
+	/**
+	 * <b>DO NOT USE OUTSIDE RUNTIME!</b>
+	 * <p>
+	 * This method is called to remove all "shouldBeRemoved" layers
+	 * from the LayerStack
+	 */
+	public void __processShouldRemoveLayers() {
+		Iterator<Layer> i = layerStack.iterator();
+		
+		while(i.hasNext()) {
+			Layer l = i.next();
+			
+			if(l.shouldBeRemoved) i.remove();
+		}
 	}
 }

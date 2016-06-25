@@ -12,6 +12,9 @@ import net.exodiusmc.blasteroids.layers.effects.LayerEffect;
  */
 public abstract class Layer {
 	public LayerEffect transition;
+	public boolean shouldBeRemoved = false; 
+	private double offset_x = 0;
+	private double offset_y = 0;
 	
 	/**
 	 * Make this method return true if you want to update the layer when
@@ -75,5 +78,41 @@ public abstract class Layer {
 	 */
 	public boolean hasLayerEffect() {
 		return transition != null;
+	}
+	
+	/**
+	 * Returns the X-offset variable for the layer; This value is altered by LayerEffects
+	 * 
+	 * @return Double
+	 */
+	public double getOffsetX() {
+		return this.offset_x;
+	}
+	
+	/**
+	 * Returns the Y-offset variable for the layer; This value is altered by LayerEffects
+	 * 
+	 * @return Double
+	 */
+	public double getOffsetY() {
+		return this.offset_y;
+	}
+	
+	/**
+	 * Sets the X-offset variable for the layer
+	 * 
+	 * @param a Double
+	 */
+	public void setOffsetX(double a) {
+		this.offset_x = a;
+	}
+	
+	/**
+	 * Sets the Y-offset variable for the layer
+	 * 
+	 * @param a Double
+	 */
+	public void setOffsetY(double a) {
+		this.offset_y = a;
 	}
 }

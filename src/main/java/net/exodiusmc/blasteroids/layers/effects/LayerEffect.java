@@ -1,12 +1,12 @@
 package net.exodiusmc.blasteroids.layers.effects;
 
 import javafx.scene.canvas.GraphicsContext;
+import net.exodiusmc.blasteroids.Layer;
 
 /**
- * LayerEffects can be applied to layers to alter their behavoir. You can use this
+ * LayerEffects can be applied to layers to alter their behavior. You can use this
  * to create seamless transitions between layer changes
- * 
- * @author julian
+ *
  * @see net.exodiusmc.blasteroids.enums.LayerEffectType
  */
 public abstract class LayerEffect {
@@ -14,8 +14,8 @@ public abstract class LayerEffect {
 	private boolean completed = false;
 	private Runnable callback;
 	
-	public abstract void applyBefore(GraphicsContext gfx, long ticks);
-	public abstract void applyAfter(GraphicsContext gfx, long ticks);
+	public abstract void applyBefore(Layer l, GraphicsContext gfx, long ticks);
+	public abstract void applyAfter(Layer l, GraphicsContext gfx, long ticks);
 	
 	public void complete() {
 		this.completed = true;

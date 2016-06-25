@@ -45,45 +45,51 @@ public class Runtime extends AnimationTimer {
 	        gfx.setFill(Color.BLACK);
 	        gfx.fillRect(-Main.WIDTH, -Main.HEIGHT, Main.WIDTH * 2, Main.HEIGHT * 2);
 	        
+	        LayerManager.getManager().__processShouldRemoveLayers();
+	        
 	        int stackSize = LayerManager.getManager().size();
 	        
 	        for(int c = 0; c < stackSize; c++) {
-	        	Layer l = LayerManager.getManager().get(c);
-	        	LayerEffect transition = null;
-	        	long tick = 0;
-	        	
-	        	if(l.hasLayerEffect()) {
-	        		transition = l.transition;
-	        		tick = transition.tick();
-	        		
-	        		transition.applyBefore(this.gfx, tick);
-	        		
-	        		if(transition.isCompleted()) {
-	        			callTransitionCallback(transition);
-	        			
-	        			if(l.transition == transition) {
-	        				l.transition = null;
-	        			}
-	        		}
-	        	}
-	        	
-	        	if((stackSize - 1 != c && l.updateOnCover()) || stackSize -1 == c) {
-	        		l.update(this.delta, this.frame);
-	        	}
-	        	
-	        	l.render(this.gfx);
-	        	
-	        	if(l.hasLayerEffect()) {
-	        		transition = l.transition;
-	        		transition.applyAfter(this.gfx, tick);
-	        		
-	        		if(transition.isCompleted()) {
-	        			callTransitionCallback(transition);
-	        			
-	        			if(l.transition == transition) {
-	        				l.transition = null;
-	        			}
-	        		}
+	        	try {
+		        	Layer l = LayerManager.getManager().get(c);
+		        	LayerEffect transition = null;
+		        	long tick = 0;
+		        	
+		        	if(l.hasLayerEffect()) {
+		        		transition = l.transition;
+		        		tick = transition.tick();
+		        		
+		        		transition.applyBefore(l, this.gfx, tick);
+		        		
+		        		if(transition.isCompleted()) {
+		        			callTransitionCallback(transition);
+		        			
+		        			if(l.transition == transition) {
+		        				l.transition = null;
+		        			}
+		        		}
+		        	}
+		        	
+		        	if((stackSize - 1 != c && l.updateOnCover()) || stackSize -1 == c) {
+		        		l.update(this.delta, this.frame);
+		        	}
+		        	
+		        	l.render(this.gfx);
+		        	
+		        	if(l.hasLayerEffect()) {
+		        		transition = l.transition;
+		        		transition.applyAfter(l, this.gfx, tick);
+		        		
+		        		if(transition.isCompleted()) {
+		        			callTransitionCallback(transition);
+		        			
+		        			if(l.transition == transition) {
+		        				l.transition = null;
+		        			}
+		        		}
+		        	}
+	        	} catch(Exception e) {
+	        		Logger.getLogger().error("Failed to process layer");
 	        	}
 	        }
 	        

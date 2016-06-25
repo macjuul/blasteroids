@@ -18,10 +18,6 @@ public class MainMenuLayer extends Layer {
 	
 	public MainMenuLayer() {
 		input = InputManager.getManager();
-		
-		GeneralUtils.setTimeout(1500L, () -> {
-			this.applyEffect(LayerEffectType.SLIDE_TO_RIGHT);
-		});
 	}
 	
 	@Override
@@ -34,10 +30,10 @@ public class MainMenuLayer extends Layer {
 		if(this.shiftDelay == 0) {
 			if(input.isAnyKeyPressed(new KeyCode[] {KeyCode.UP, KeyCode.W})) {
 				item--;
-				shiftDelay = 10;
+				shiftDelay = 12;
 			} else if(input.isAnyKeyPressed(new KeyCode[] {KeyCode.DOWN, KeyCode.S})) {
 				item++;
-				shiftDelay = 10;
+				shiftDelay = 12;
 			}
 			
 			if(item < 0) item = 3;
@@ -60,30 +56,30 @@ public class MainMenuLayer extends Layer {
 		double ratio = splash.getHeight() / splash.getWidth();
 		double width = Main.WIDTH * 0.6, height = width * ratio;
 		
-		gfx.drawImage(splash, Main.WIDTH * 0.2, 55, width, height);
+		gfx.drawImage(splash, getOffsetX() + Main.WIDTH * 0.2, 55, width, height);
 		
 		if(item == 0) {
-			gfx.drawImage(mngr.getImage("play_2"), xStart, 280);
+			gfx.drawImage(mngr.getImage("play_2"), getOffsetX() + xStart, 280);
 		} else {
-			gfx.drawImage(mngr.getImage("play_1"), xStart, 280);
+			gfx.drawImage(mngr.getImage("play_1"), getOffsetX() + xStart, 280);
 		}
 		
 		if(item == 1) {
-			gfx.drawImage(mngr.getImage("settings_2"), xStart, 380);
+			gfx.drawImage(mngr.getImage("settings_2"), getOffsetX() + xStart, 380);
 		} else {
-			gfx.drawImage(mngr.getImage("settings_1"), xStart, 380);
+			gfx.drawImage(mngr.getImage("settings_1"), getOffsetX() + xStart, 380);
 		}
 		
 		if(item == 2) {
-			gfx.drawImage(mngr.getImage("credits_2"), xStart, 480);
+			gfx.drawImage(mngr.getImage("credits_2"), getOffsetX() + xStart, 480);
 		} else {
-			gfx.drawImage(mngr.getImage("credits_1"), xStart, 480);
+			gfx.drawImage(mngr.getImage("credits_1"), getOffsetX() + xStart, 480);
 		}
 		
 		if(item == 3) {
-			gfx.drawImage(mngr.getImage("quit_2"), xStart, 580);
+			gfx.drawImage(mngr.getImage("quit_2"), getOffsetX() + xStart, 580);
 		} else {
-			gfx.drawImage(mngr.getImage("quit_1"), xStart, 580);
+			gfx.drawImage(mngr.getImage("quit_1"), getOffsetX() + xStart, 580);
 		}
 	}
 
