@@ -7,6 +7,8 @@ import net.exodiusmc.blasteroids.Main;
 import net.exodiusmc.blasteroids.enums.LayerEffectType;
 import net.exodiusmc.blasteroids.layers.effects.FadeIn;
 import net.exodiusmc.blasteroids.layers.effects.SlideFromLeft;
+import net.exodiusmc.blasteroids.layers.effects.SlideFromRight;
+import net.exodiusmc.blasteroids.layers.effects.SlideToLeft;
 import net.exodiusmc.blasteroids.layers.effects.SlideToRight;
 import net.exodiusmc.blasteroids.manager.LayerManager;
 import net.exodiusmc.blasteroids.manager.MediaManager;
@@ -45,20 +47,20 @@ public class SplashLayer extends Layer {
 
 						@Override
 						public void run() {
-							SlideToRight str = (SlideToRight) menu.applyEffect(LayerEffectType.SLIDE_FROM_RIGHT);
-							str.setSlideAmount(27);
-							str.setOnCompleted(new Runnable() {
+							SlideToLeft sfl = (SlideToLeft) menu.applyEffect(LayerEffectType.SLIDE_TO_LEFT);
+							sfl.setSlideAmount(45);
+							sfl.setOnCompleted(new Runnable() {
 								@Override
 								public void run() {
 									LayerManager.getManager().remove(menu);
 								}
 							});
 							
-//							MainMenuLayer menu2 = new MainMenuLayer();
-//							LayerManager.getManager().add(menu2);
-//							
-//							SlideFromLeft sfl = (SlideFromLeft) menu2.applyEffect(LayerEffectType.SLIDE_TO_RIGHT);
-//							sfl.setSlideAmount(27);
+							MainMenuLayer menu2 = new MainMenuLayer();
+							LayerManager.getManager().add(menu2);
+							
+							SlideFromRight str = (SlideFromRight) menu2.applyEffect(LayerEffectType.SLIDE_FROM_RIGHT);
+							str.setSlideAmount(45);
 						}
 						
 					});
