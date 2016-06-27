@@ -8,7 +8,12 @@ import net.exodiusmc.blasteroids.Layer;
 import net.exodiusmc.blasteroids.Main;
 import net.exodiusmc.blasteroids.enums.LayerEffectType;
 import net.exodiusmc.blasteroids.layers.effects.LayerEffect;
+import net.exodiusmc.blasteroids.layers.effects.SlideFromLeft;
+import net.exodiusmc.blasteroids.layers.effects.SlideFromRight;
+import net.exodiusmc.blasteroids.layers.effects.SlideToLeft;
+import net.exodiusmc.blasteroids.layers.effects.SlideToRight;
 import net.exodiusmc.blasteroids.manager.InputManager;
+import net.exodiusmc.blasteroids.manager.LayerManager;
 import net.exodiusmc.blasteroids.manager.MediaManager;
 import net.exodiusmc.blasteroids.utils.GeneralUtils;
 
@@ -49,9 +54,43 @@ public class MenuLayer extends Layer {
 				
 				break;
 			case 1:	// Settings
+				SlideToRight ss = (SlideToRight) this.applyEffect(LayerEffectType.SLIDE_TO_RIGHT);
+				ss.setSlideAmount(45);
+				
+				MenuLayer sl = this;
+				
+				ss.setOnCompleted(new Runnable() {
+					@Override
+					public void run() {
+						sl.eject();
+					}
+				});
+				
+				SettingsLayer sset = new SettingsLayer();
+				LayerManager.getManager().add(sset);
+				
+				SlideFromLeft ssl = (SlideFromLeft) sset.applyEffect(LayerEffectType.SLIDE_FROM_LEFT);
+				ssl.setSlideAmount(45);
 				
 				break;
 			case 2:	// About
+				SlideToLeft as = (SlideToLeft) this.applyEffect(LayerEffectType.SLIDE_TO_LEFT);
+				as.setSlideAmount(45);
+				
+				MenuLayer aa = this;
+				
+				as.setOnCompleted(new Runnable() {
+					@Override
+					public void run() {
+						aa.eject();
+					}
+				});
+				
+				AboutLayer about = new AboutLayer();
+				LayerManager.getManager().add(about);
+				
+				SlideFromRight asl = (SlideFromRight) about.applyEffect(LayerEffectType.SLIDE_FROM_RIGHT);
+				asl.setSlideAmount(45);
 				
 				break;
 			case 3:	// Quit game

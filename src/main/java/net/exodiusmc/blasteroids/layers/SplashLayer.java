@@ -42,28 +42,6 @@ public class SplashLayer extends Layer {
 					
 					((FadeIn) menu.applyEffect(LayerEffectType.FADE_IN)).setFadeAmount(0.02);
 					LayerManager.getManager().add(menu);
-					
-					GeneralUtils.setTimeout(1500L, new Runnable() {
-
-						@Override
-						public void run() {
-							SlideToLeft sfl = (SlideToLeft) menu.applyEffect(LayerEffectType.SLIDE_TO_LEFT);
-							sfl.setSlideAmount(45);
-							sfl.setOnCompleted(new Runnable() {
-								@Override
-								public void run() {
-									LayerManager.getManager().remove(menu);
-								}
-							});
-							
-							MenuLayer menu2 = new MenuLayer();
-							LayerManager.getManager().add(menu2);
-							
-							SlideFromRight str = (SlideFromRight) menu2.applyEffect(LayerEffectType.SLIDE_FROM_RIGHT);
-							str.setSlideAmount(45);
-						}
-						
-					});
 				});
 			});
 		}
