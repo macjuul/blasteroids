@@ -14,8 +14,14 @@ import net.exodiusmc.blasteroids.manager.LayerManager;
 public abstract class Layer {
 	public LayerEffect transition;
 	public boolean shouldBeRemoved = false; 
+	
 	private double offset_x = 0;
 	private double offset_y = 0;
+	
+	public boolean enabled = true;
+	public boolean shouldBeEnabled = true;
+	public boolean rendering = true;
+	public boolean shouldBeRendering = true;
 	
 	/**
 	 * Make this method return true if you want to update the layer when
@@ -82,6 +88,22 @@ public abstract class Layer {
 	}
 	
 	/**
+	 * Get the current LayerEffect on this Layer.
+	 * If there is no LayerEffect active null will
+	 * be returned.
+	 * 
+	 * @return LayerEffect
+	 */
+	public LayerEffect getActiveLayerEffect() {
+		if(hasLayerEffect()) {
+			return this.transition;
+		}
+		
+		Logger.getLogger().error("The requested layer currently has no active LayerEffect");
+		return null;
+	}
+	
+	/**
 	 * Returns the X-offset variable for the layer; This value is altered by LayerEffects
 	 * 
 	 * @return Double
@@ -126,6 +148,69 @@ public abstract class Layer {
 		return LayerManager.getManager().getTopLayer() == this;
 	}
 	
+	/**
+	 * Removes the layer from the layer stack.
+	 * This is an alias to {@link LayerManager#remove(Layer)}
+	 */
+	public void eject() {
+		LayerManager.getManager().remove(this);
+	}
+	
+	/**
+	 * Returns true if this Layer is enabled.
+	 * If a layer is disabled it will not be updated and
+	 * will not render. This allows you to temporarily
+	 * disable a layer without removing it from the stack
+	 * 
+	 * @return Boolean
+	 * 
+	 * @see Layer#setEnabled(boolean)
+	 */
+	public boolean isEnabled() {
+		return this.enabled;
+	}
+	
+	/**
+	 * Sets if the layer should be enabled or not.
+	 * If a layer is disabled it will not be updated and
+	 * will not render. This allows you to temporarily
+	 * disable a layer without removing it from the stack
+	 * 
+	 * @param enable Boolean
+	 * 
+	 * @see Layer#isEnabled()
+	 */
+	public void setEnabled(boolean enable) {
+		this.shouldBeEnabled = enable;
+	}
+	
+	/**
+	 * Returns true if this Layer gets rendered onto the screen
+	 * 
+	 * @return Boolean
+	 * 
+	 * @see Layer#setRendering(boolean)
+	 */
+	public boolean isRendering() {
+		return this.rendering;
+	}
+	
+	/**
+	 * Sets if the layer gets rendered onto the screen
+	 * 
+	 * @param enable Boolean
+	 * 
+	 * @see Layer#isRendering()
+	 */
+	public void setRendering(boolean enable) {
+		this.shouldBeRendering = enable;
+	}
+	
+	/**
+	 * Returns the class name + @ + hash code
+	 * 
+	 * @return String
+	 */
 	@Override
 	public String toString() {
 		return this.getClass().getSimpleName() + "@" + this.hashCode();

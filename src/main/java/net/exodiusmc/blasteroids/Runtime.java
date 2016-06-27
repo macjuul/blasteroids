@@ -45,13 +45,16 @@ public class Runtime extends AnimationTimer {
 	        gfx.setFill(Color.BLACK);
 	        gfx.fillRect(-Main.WIDTH, -Main.HEIGHT, Main.WIDTH * 2, Main.HEIGHT * 2);
 	        
-	        LayerManager.getManager().__processShouldRemoveLayers();
+	        LayerManager.getManager().__processShouldFields();
 	        
 	        int stackSize = LayerManager.getManager().size();
 	        
 	        for(int c = 0; c < stackSize; c++) {
 	        	try {
 		        	Layer l = LayerManager.getManager().get(c);
+		        	
+		        	if(!l.isEnabled()) continue;	// Continue if this layer is disabled
+		        	
 		        	LayerEffect transition = null;
 		        	long tick = 0;
 		        	
@@ -74,7 +77,7 @@ public class Runtime extends AnimationTimer {
 		        		l.update(this.delta, this.frame);
 		        	}
 		        	
-		        	l.render(this.gfx);
+		        	if(l.isRendering()) l.render(this.gfx);	// Only renders when rendering is enabled
 		        	
 		        	if(l.hasLayerEffect()) {
 		        		transition = l.transition;

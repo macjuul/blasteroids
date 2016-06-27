@@ -17,7 +17,7 @@ import net.exodiusmc.blasteroids.utils.GeneralUtils;
 public class SplashLayer extends Layer {
 	
 	public SplashLayer() {
-		this.applyEffect(LayerEffectType.HIDE);
+		this.setRendering(false);
 	} 
 
 	
@@ -30,14 +30,14 @@ public class SplashLayer extends Layer {
 	public void update(double delta, long frame) {
 		if(frame == 70) {
 			FadeIn fit = (FadeIn) this.applyEffect(LayerEffectType.FADE_IN);
-			
 			fit.setFadeAmount(0.008);
+			
+			this.setRendering(true);
 		} else if(frame == 230) {
 			this.applyEffect(LayerEffectType.FADE_OUT).setOnCompleted(() -> {
-				this.applyEffect(LayerEffectType.HIDE);
+				LayerManager.getManager().pop();	// Remove this layer from the stack
 				
 				GeneralUtils.setTimeout(450L, () -> {
-					LayerManager.getManager().pop();
 					MenuLayer menu = new MenuLayer();
 					
 					((FadeIn) menu.applyEffect(LayerEffectType.FADE_IN)).setFadeAmount(0.02);

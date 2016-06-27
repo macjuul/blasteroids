@@ -137,7 +137,7 @@ public class LayerManager {
 	 * This method is called to remove all "shouldBeRemoved" layers
 	 * from the LayerStack
 	 */
-	public void __processShouldRemoveLayers() {
+	public void __processShouldFields() {
 		Iterator<Layer> i = layerStack.iterator();
 		
 		while(i.hasNext()) {
@@ -146,6 +146,9 @@ public class LayerManager {
 			if(l.shouldBeRemoved) {
 				l.dispose();
 				i.remove();
+			} else {
+				l.rendering = l.shouldBeRendering;
+				l.enabled = l.shouldBeEnabled;
 			}
 		}
 	}
