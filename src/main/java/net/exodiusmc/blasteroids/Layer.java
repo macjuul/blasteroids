@@ -207,6 +207,25 @@ public abstract class Layer {
 	}
 	
 	/**
+	 * Returns the position of this layer in the stack.
+	 * Returns -1 if the layer is currently not in the stack
+	 * 
+	 * @return int
+	 */
+	public int getPosition() {
+		return LayerManager.getManager().getPosition(this);
+	}
+	
+	/**
+	 * Returns true if the layer is currently on the stack
+	 * 
+	 * @return Boolean
+	 */
+	public boolean isInsideStack() {
+		return LayerManager.getManager().contains(this);
+	}
+	
+	/**
 	 * Returns the class name + @ + hash code
 	 * 
 	 * @return String

@@ -42,6 +42,10 @@ public class LayerManager {
 		return layerStack.size();
 	}
 	
+	public boolean isEmpty() {
+		return this.layerStack.isEmpty();
+	}
+	
 	/**
 	 * Add a new layer to the layer stack. This layer will be added "on top" of the other layers
 	 * 
@@ -55,6 +59,17 @@ public class LayerManager {
 	}
 	
 	/**
+	 * Adds the given layers to the layer stack
+	 * 
+	 * @param ls Layers
+	 */
+	public void add(Layer... ls) {
+		for(Layer l : ls) {
+			add(l);
+		}
+	}
+	
+	/**
 	 * Get the layer at the specified index
 	 * 
 	 * @param l Layer
@@ -65,12 +80,25 @@ public class LayerManager {
 	}
 	
 	/**
-	 * Remove a layer from the layer stack
+	 * Remove the layer at the specified index from the stack
 	 * 
 	 * @param index int
 	 */
 	public void remove(int index) {
-		layerStack.get(index).shouldBeRemoved = true;
+		Layer l = layerStack.get(index);
+		Logger.getLogger().log("Removed layer " + l.toString() + " from the stack", LogLevel.INFO, LogLevel.LAYER);
+		l.shouldBeRemoved = true;
+	}
+	
+	/**
+	 * Removes the layers on the given indexes from the stack
+	 *  
+	 * @param indexes List of ints
+	 */
+	public void remove(int... indexes) {
+		for(int i : indexes) {
+			remove(i);
+		}
 	}
 	
 	/**
@@ -80,6 +108,19 @@ public class LayerManager {
 	 */
 	public void remove(Layer layer) {
 		layer.shouldBeRemoved = true;
+		
+		Logger.getLogger().log("Removed layer " + layer.toString() + " from the stack", LogLevel.INFO, LogLevel.LAYER);
+	}
+	
+	/**
+	 * Removes the given layers from the stack
+	 *  
+	 * @param indexes List of layers
+	 */
+	public void remove(Layer... ls) {
+		for(Layer l : ls) {
+			remove(l);
+		}
 	}
 	
 	/**
@@ -91,7 +132,7 @@ public class LayerManager {
 		Layer popped = this.layerStack.get(this.layerStack.size() - 1);
 		popped.shouldBeRemoved = true;
 		
-		Logger.getLogger().log("Popped existing layer " + popped.toString(), LogLevel.INFO, LogLevel.LAYER);
+		Logger.getLogger().log("Popped layer " + popped.toString() + " from the stack", LogLevel.INFO, LogLevel.LAYER);
 		return popped;
 	}
 	
@@ -129,6 +170,28 @@ public class LayerManager {
 		} catch(IndexOutOfBoundsException e) {
 			return null;
 		}
+	}
+	
+	/**
+	 * Checks if the given layer is inside the layer stack and
+	 * returns true if it is
+	 * 
+	 * @param l Layer
+	 * @return Boolean
+	 */
+	public boolean contains(Layer l) {
+		return this.layerStack.contains(l);
+	}
+	
+	/**
+	 * Returns the position of the given layer in the layer stack.
+	 * Returns -1 if the layer cannot be found
+	 * 
+	 * @param l Layer
+	 * @return int
+	 */
+	public int getPosition(Layer l) {
+		return this.layerStack.indexOf(l);
 	}
 	
 	/**
