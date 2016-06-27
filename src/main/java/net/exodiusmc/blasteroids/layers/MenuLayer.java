@@ -19,7 +19,6 @@ import net.exodiusmc.blasteroids.utils.GeneralUtils;
 
 public class MenuLayer extends Layer {
 	byte item = 0, shiftDelay = 0;
-	boolean clicked = false;
 	InputManager input;
 	
 	public MenuLayer() {
@@ -48,10 +47,19 @@ public class MenuLayer extends Layer {
 			this.shiftDelay--;
 		}
 		
-		if(input.isAnyKeyPressed(new KeyCode[] {KeyCode.SPACE, KeyCode.ENTER})) {
+		if(input.isAnyKeyPressed(new KeyCode[] {KeyCode.SPACE, KeyCode.ENTER}) && !this.hasLayerEffect()) {
 			switch(item) {
 			case 0:	// Start game
+				LayerEffect effect = this.applyEffect(LayerEffectType.FADE_OUT);
 				
+				MenuLayer l = this;
+				
+				effect.setOnCompleted(new Runnable() {
+					@Override
+					public void run() {
+						l.eject();
+					}
+				});
 				break;
 			case 1:	// Settings
 				SlideToRight ss = (SlideToRight) this.applyEffect(LayerEffectType.SLIDE_TO_RIGHT);
@@ -148,9 +156,6 @@ public class MenuLayer extends Layer {
 	}
 
 	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void dispose() {}
 
 }
