@@ -76,7 +76,7 @@ public class Logger {
 	 * @param tags LogLevels
 	 */
 	@SuppressWarnings("deprecation")
-	public void log(String message, LogLevel... tags) {
+	public void log(Object message, LogLevel... tags) {
 		Date d = new Date();
 		String msg = "[" + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + "] ";
 		boolean error = false;
@@ -89,7 +89,7 @@ public class Logger {
 			if(tag.equals(LogLevel.CRITICAL_ERROR)) critical = true;
 		}
 		
-		msg += message;
+		msg += message.toString();
 		
 		if(error || critical) {
 			System.err.println(msg);
@@ -107,6 +107,7 @@ public class Logger {
 		
 		if(critical) {
 			Platform.exit();
+			System.exit(0);
 		}
 	}
 	
@@ -115,7 +116,7 @@ public class Logger {
 	 * 
 	 * @param message String
 	 */
-	public void warn(String message) {
+	public void warn(Object message) {
 		this.log(message, LogLevel.WARNING);
 	}
 	
@@ -124,7 +125,7 @@ public class Logger {
 	 * 
 	 * @param message String
 	 */
-	public void error(String message) {
+	public void error(Object message) {
 		this.log(message, LogLevel.ERROR);
 	}
 	
@@ -133,7 +134,7 @@ public class Logger {
 	 * 
 	 * @param message String
 	 */
-	public void info(String message) {
+	public void info(Object message) {
 		this.log(message, LogLevel.INFO);
 	}
 }
