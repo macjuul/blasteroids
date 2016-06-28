@@ -18,13 +18,6 @@
         </dependency>
     </dependencies>
     <build>
-    	<resources>
-	        <resource>
-	            <directory>src/main/resources/net/exodiusmc/blasteroids</directory>
-	            <filtering>true</filtering>
-	        </resource>
-	    </resources>
-        <sourceDirectory>src</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
