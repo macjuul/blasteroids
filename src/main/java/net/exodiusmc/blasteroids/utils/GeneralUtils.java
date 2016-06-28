@@ -6,6 +6,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import javafx.concurrent.Task;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import net.exodiusmc.blasteroids.Logger;
+
 /**
  * GeneralUtils contains utility methods for a bunch of handy things you might need to use
  */
@@ -54,4 +59,21 @@ public class GeneralUtils {
         return array.get(rnd);
     }
     
+    public static void playSound(Media sound) {
+    	playSound(new MediaPlayer(sound));
+    }
+    
+    public static void playSound(MediaPlayer sound) {
+    	Logger.getLogger().info("Playing sound " + sound.toString());
+    	
+    	Task<Void> task = new Task<Void>() {
+    	    @Override
+    	    protected Void call() {
+    	    	sound.play();
+				return null;
+    	    }
+    	};
+    	
+    	new Thread(task).start();
+    }
 }

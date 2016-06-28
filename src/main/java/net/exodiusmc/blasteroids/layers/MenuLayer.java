@@ -4,6 +4,8 @@ import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import net.exodiusmc.blasteroids.Layer;
 import net.exodiusmc.blasteroids.Main;
 import net.exodiusmc.blasteroids.enums.LayerEffectType;
@@ -18,8 +20,9 @@ import net.exodiusmc.blasteroids.manager.MediaManager;
 import net.exodiusmc.blasteroids.utils.GeneralUtils;
 
 public class MenuLayer extends Layer {
-	byte item = 0, shiftDelay = 0;
-	InputManager input;
+	private byte item = 0, shiftDelay = 0;
+	private InputManager input;
+	private Media select = MediaManager.getManager().getSound("select");
 	
 	public MenuLayer() {
 		input = InputManager.getManager();
@@ -36,9 +39,13 @@ public class MenuLayer extends Layer {
 			if(input.isAnyKeyPressed(new KeyCode[] {KeyCode.UP, KeyCode.W})) {
 				item--;
 				shiftDelay = 9;
+				
+				GeneralUtils.playSound(select);
 			} else if(input.isAnyKeyPressed(new KeyCode[] {KeyCode.DOWN, KeyCode.S})) {
 				item++;
 				shiftDelay = 9;
+				
+				GeneralUtils.playSound(select);
 			}
 			
 			if(item < 0) item = 3;
@@ -48,6 +55,8 @@ public class MenuLayer extends Layer {
 		}
 		
 		if(input.isAnyKeyPressed(new KeyCode[] {KeyCode.SPACE, KeyCode.ENTER}) && !this.hasLayerEffect()) {
+			GeneralUtils.playSound(select);
+			
 			switch(item) {
 			case 0:	// Start game
 				LayerEffect effect = this.applyEffect(LayerEffectType.FADE_OUT);
