@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.media.MediaPlayer;
 import net.exodiusmc.blasteroids.Layer;
 import net.exodiusmc.blasteroids.Main;
 import net.exodiusmc.blasteroids.enums.LayerEffectType;
@@ -13,9 +14,10 @@ import net.exodiusmc.blasteroids.manager.MediaManager;
 import net.exodiusmc.blasteroids.utils.GeneralUtils;
 
 public class MenuLayer extends Layer {
-	byte item = 0, shiftDelay = 0;
-	boolean clicked = false;
-	InputManager input;
+	private byte item = 0, shiftDelay = 0;
+	private boolean clicked = false;
+	private InputManager input;
+	private MediaPlayer select = MediaManager.getManager().getSound("select");
 	
 	public MenuLayer() {
 		input = InputManager.getManager();
@@ -32,9 +34,13 @@ public class MenuLayer extends Layer {
 			if(input.isAnyKeyPressed(new KeyCode[] {KeyCode.UP, KeyCode.W})) {
 				item--;
 				shiftDelay = 12;
+				
+				GeneralUtils.playSound(select);
 			} else if(input.isAnyKeyPressed(new KeyCode[] {KeyCode.DOWN, KeyCode.S})) {
 				item++;
 				shiftDelay = 12;
+				
+				GeneralUtils.playSound(select);
 			}
 			
 			if(item < 0) item = 3;
@@ -44,6 +50,8 @@ public class MenuLayer extends Layer {
 		}
 		
 		if(input.isAnyKeyPressed(new KeyCode[] {KeyCode.SPACE, KeyCode.ENTER})) {
+			GeneralUtils.playSound(select);
+			
 			switch(item) {
 			case 0:	// Start game
 				

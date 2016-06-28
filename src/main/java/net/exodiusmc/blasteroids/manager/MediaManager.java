@@ -18,11 +18,11 @@ import net.exodiusmc.blasteroids.utils.FileUtils;
  */
 public class MediaManager {
 	private static MediaManager instance;
-	private HashMap<String, MediaPlayer> players;
+	private HashMap<String, Media> players;
 	private HashMap<String, Image> images;
     
 	private MediaManager(String[] media) {
-		this.players = new HashMap<String, MediaPlayer>();
+		this.players = new HashMap<String, Media>();
 		this.images = new HashMap<String, Image>();
 		int changed = 0;
 		
@@ -32,7 +32,7 @@ public class MediaManager {
 			String name = FileUtils.getFileName(path);
 			
 			if(ext.equals("wav") || ext.equals("mp3")) {
-				this.players.put(name, new MediaPlayer(new Media(path)));
+				this.players.put(name, new Media(path));
 				
 				changed++;
 			} else if(ext.equals("png")) {
@@ -81,7 +81,7 @@ public class MediaManager {
     	Image i = this.images.get(name);
     	
     	if(i == null) {
-    		throw new NullPointerException("Unknown media: " + name);
+    		Logger.getLogger().error("Could not find Image media \"" + name + "\"");
     	}
     	
     	return i;
@@ -94,12 +94,12 @@ public class MediaManager {
      * @return MediaPlayer
      */
     public MediaPlayer getSound(String name) {
-    	MediaPlayer i = this.players.get(name);
+    	Media i = this.players.get(name);
     	
     	if(i == null) {
-    		throw new NullPointerException("Unknown media: " + name);
+    		Logger.getLogger().error("Could not find Sound media \"" + name + "\"");
     	}
     	
-    	return i;
+    	return new MediaPlayer(i);
     }
 }
