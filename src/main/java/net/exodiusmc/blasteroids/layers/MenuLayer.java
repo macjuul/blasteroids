@@ -126,11 +126,11 @@ public class MenuLayer extends Layer {
 		double ratio = splash.getHeight() / splash.getWidth();
 		double width = Main.WIDTH * 0.6, height = width * ratio;
 		
-		gfx.drawImage(splash, getOffsetX() + Main.WIDTH * 0.2, Main.HEIGHT * 0.1, width, height);
+		gfx.drawImage(splash, getOffsetX() + Main.WIDTH * 0.2, getOffsetY() + Main.HEIGHT * 0.1, width, height);
 		
 		Image play = mngr.getImage("play_1");
 		
-		double yStart = height + (Main.HEIGHT * 0.2);
+		double yStart = getOffsetY() + height + (Main.HEIGHT * 0.2);
 		
 		ratio = play.getHeight() / play.getWidth();
 		width = Main.WIDTH * 0.5;

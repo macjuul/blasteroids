@@ -7,6 +7,7 @@ import net.exodiusmc.blasteroids.Main;
 import net.exodiusmc.blasteroids.enums.LayerEffectType;
 import net.exodiusmc.blasteroids.layers.effects.FadeIn;
 import net.exodiusmc.blasteroids.layers.effects.SlideFromBottom;
+import net.exodiusmc.blasteroids.layers.effects.SlideToBottom;
 import net.exodiusmc.blasteroids.layers.effects.SlideToTop;
 import net.exodiusmc.blasteroids.manager.LayerManager;
 import net.exodiusmc.blasteroids.manager.MediaManager;
@@ -40,28 +41,6 @@ public class SplashLayer extends Layer {
 					
 					((FadeIn) menu.applyEffect(LayerEffectType.FADE_IN)).setFadeAmount(0.02);
 					LayerManager.getManager().add(menu);
-					
-					GeneralUtils.setTimeout(1500L, new Runnable() {
-
-						@Override
-						public void run() {
-							SlideToTop sfl = (SlideToTop) menu.applyEffect(LayerEffectType.SLIDE_TO_TOP);
-							sfl.setSlideAmount(45);
-							sfl.setOnCompleted(new Runnable() {
-								@Override
-								public void run() {
-									LayerManager.getManager().remove(menu);
-								}
-							});
-							
-							MenuLayer menu2 = new MenuLayer();
-							LayerManager.getManager().add(menu2);
-							
-							SlideFromBottom str = (SlideFromBottom) menu2.applyEffect(LayerEffectType.SLIDE_FROM_BOTTOM);
-							str.setSlideAmount(45);
-						}
-						
-					});
 				});
 			});
 		}
