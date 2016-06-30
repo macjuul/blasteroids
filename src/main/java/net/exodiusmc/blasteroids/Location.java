@@ -75,6 +75,28 @@ public class Location {
 	}
 	
 	/**
+	 * Adds the given amount to the X component
+	 * 
+	 * @param a Double
+	 * @return Location
+	 */
+	public Location addX(double a) {
+		this.x += a;
+		return this;
+	}
+	
+	/**
+	 * Adds the given amount to the Y component
+	 * 
+	 * @param a Double
+	 * @return Location
+	 */
+	public Location addY(double a) {
+		this.y += a;
+		return this;
+	}
+	
+	/**
 	 * Subtract the given X and Y units from the location
 	 * 
 	 * @param x X unit
