@@ -31,7 +31,7 @@ public class GameLayer extends Layer {
 	@Override
 	public void update(double delta, long frame) {
 		if(phase == 0) {
-			this.ship.getLocation().add(0, -7);
+			this.ship.getLocation().addY(-7);
 			
 			if() {
 				

@@ -146,4 +146,23 @@ public class SpriteAnimation {
 			
 		return sub;
 	}
+
+	
+	/**
+	 * Returns the width of a single sprite frame
+	 * 
+	 * @return Double
+	 */
+	public double getWidth() {
+		return width;
+	}
+
+	/**
+	 * Returns the height of a single sprite frame
+	 * 
+	 * @return Double
+	 */
+	public double getHeight() {
+		return height;
+	}
 }
