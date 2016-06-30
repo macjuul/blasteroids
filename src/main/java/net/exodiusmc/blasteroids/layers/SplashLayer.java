@@ -47,7 +47,7 @@ public class SplashLayer extends Layer {
 	}
 	
 	@Override
-	public void render(GraphicsContext gfx) {
+	public void render(GraphicsContext gfx, long ticks) {
 		Image splash = MediaManager.getManager().getImage("splash");
 		double ratio = splash.getHeight() / splash.getWidth();
 		double width = Main.WIDTH * 0.8, height = width * ratio;

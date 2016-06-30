@@ -37,7 +37,7 @@ public abstract class Layer {
 	 * called each time the game loop runs, by default at 60 FPS.
 	 * <p>
 	 * Make sure you don't make any rendering calls from here, since they
-	 * should be made from the {@link Layer#render(GraphicsContext)} method
+	 * should be made from the {@link Layer#render(GraphicsContext, Long)} method
 	 * 
 	 * @param delta Double
 	 * @param frame Long
@@ -54,8 +54,9 @@ public abstract class Layer {
 	 * to render and what not.
 	 * 
 	 * @param gfx GraphicsContext
+	 * @param frame Long
 	 */
-	public abstract void render(GraphicsContext gfx);
+	public abstract void render(GraphicsContext gfx, long frame);
 	
 	/**
 	 * This method will get called when the layer gets ejected from the

@@ -17,7 +17,7 @@ public class AboutLayer extends Layer {
 	}
 
 	@Override
-	public void render(GraphicsContext gfx) {
+	public void render(GraphicsContext gfx, long ticks) {
 		// TODO Auto-generated method stub
 		
 	}

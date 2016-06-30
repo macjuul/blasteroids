@@ -61,12 +61,11 @@ public class MenuLayer extends Layer {
 			case 0:	// Start game
 				LayerEffect effect = this.applyEffect(LayerEffectType.FADE_OUT);
 				
-				MenuLayer l = this;
-				
 				effect.setOnCompleted(new Runnable() {
 					@Override
 					public void run() {
-						l.eject();
+						LayerManager.getManager().pop();
+						LayerManager.getManager().add(new GameLayer());
 					}
 				});
 				break;
@@ -119,7 +118,7 @@ public class MenuLayer extends Layer {
 	}
 
 	@Override
-	public void render(GraphicsContext gfx) {
+	public void render(GraphicsContext gfx, long ticks) {
 		MediaManager mngr = MediaManager.getManager();
 		
 		Image splash = mngr.getImage("blasteroids_logo");

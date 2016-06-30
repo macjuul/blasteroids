@@ -77,7 +77,7 @@ public class Runtime extends AnimationTimer {
 		        		l.update(this.delta, this.frame);
 		        	}
 		        	
-		        	if(l.isRendering()) l.render(this.gfx);	// Only renders when rendering is enabled
+		        	if(l.isRendering()) l.render(this.gfx, this.frame);	// Only renders when rendering is enabled
 		        	
 		        	if(l.hasLayerEffect()) {
 		        		transition = l.transition;

@@ -9,6 +9,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import net.exodiusmc.blasteroids.Location;
 import net.exodiusmc.blasteroids.Logger;
 
 /**
@@ -21,6 +22,7 @@ public class InputManager {
 	private Stage window;
     private HashSet<KeyCode> keys;
     private HashSet<MouseButton> buttons;
+    private Location cursor;
     
 	private InputManager(Stage win) {
 		this.keys = new HashSet<KeyCode>();
@@ -55,6 +57,13 @@ public class InputManager {
 			@Override
 			public void handle(MouseEvent event) {
 				buttons.remove(event.getButton());
+			}
+        });
+        
+        win.addEventHandler(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				cursor = new Location(event.getX(), event.getY());
 			}
         });
         
@@ -121,6 +130,15 @@ public class InputManager {
      */
     public boolean isMouseButtonPressed(MouseButton b) {
         return this.buttons.contains(b);
+    }
+    
+    /**
+     * Returns the location of the cursor on the window
+     * 
+     * @return Location cursor location
+     */
+    public Location getCursorPosition() {
+    	return this.cursor;
     }
     
     /**
