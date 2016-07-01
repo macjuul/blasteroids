@@ -1,0 +1,39 @@
+### [=-=] CONTRIBUTING TO BLASTEROIDS [=-=] ###
+
+# If you want to contribute to Blasteroids, there are some set
+# rules and guides you will have to follow. Failing to do this
+# may result in rejected PR's.
+
+
+1) No empty line(s) between the class definition and the class fields. It's also
+   recommended to split public, protected and private fields from each other.
+
+2) Braces must be placed on the same line as the component it's connected to:
+
+	if() {				try {								while() {
+	
+	} else {			} catch(Exception e) {				}
+	
+	}					}
+
+3) Class fields should be initialised in the constructor. Only primitive types may
+   be directly initialised during definition.
+
+4) Public fields should be avoided as much as possible. Instead, try to use Getters
+   and Setters to publically access private fields.
+
+5) Avoid putting code on the same line. Always start on a new line after ";".
+
+6) Always test your code before you commit your changes. If you do end up making a fix
+   commit try to squash it together with the original commit.
+
+7) Check if a certain Method/Class already exists before you make something yourself.
+   Locations in the game should for example always use a Location object.
+
+8) Any new API related class can be added, as long as it follows the same pattern as
+   the other related classes.
+
+9) When using new Media, don't forget to add it to the media array in the Main class.
+
+10) Use the ObjectFactory class if you need a more controlled way of creating new
+    Objects of a certain type.
