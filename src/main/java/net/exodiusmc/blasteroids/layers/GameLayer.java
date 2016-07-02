@@ -1,6 +1,7 @@
 package net.exodiusmc.blasteroids.layers;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import net.exodiusmc.blasteroids.Layer;
 import net.exodiusmc.blasteroids.Location;
 import net.exodiusmc.blasteroids.Main;
@@ -33,7 +34,6 @@ public class GameLayer extends Layer {
 		this.media = MediaManager.getManager();
 		this.spaceship = new SpriteAnimation(ship.getType().getSkinImage(), 4, true);
 		this.space = (SpaceLayer) LayerManager.getManager().getBottomLayer();
-		this.center = new Location(Main.WIDTH / 2, Main.HEIGHT / 2);
 		
 		ship.setLocation(new Location(Main.WIDTH / 2, Main.HEIGHT + spaceship.getHeight()));
 	}
@@ -54,20 +54,20 @@ public class GameLayer extends Layer {
 			}
 		} else if(phase == 1) {
 			// Spaceship movement
+			Location cur = InputManager.getManager().getCursorPosition();
+			double angle = this.ship.getLocation().getAngle(cur);
+			
+			this.ship.setVelX(this.ship.getVelX() + 0.09 * Math.sin(Math.toRadians(angle)));
+			this.ship.setVelX(this.ship.getVelX() + 0.09 * Math.sin(Math.toRadians(angle)));
+			
 			this.ship.setVelX(ship.getVelX() * FRICTION);
 			this.ship.getLocation().addX(ship.getVelX());
 			
 			this.ship.setVelY(ship.getVelY() * FRICTION);
 			this.ship.getLocation().addY(ship.getVelY());
 			
-			Location cur = InputManager.getManager().getCursorPosition();
-			
-			double angle = this.center.getAngle(cur);
-			
 			this.space.setAngle(angle);
 			this.ship.setAngle(angle);
-			
-			System.out.println(angle);
 		} else {
 			// TODO: Game ending (explosion 'n shit)
 		}
@@ -81,6 +81,15 @@ public class GameLayer extends Layer {
 		       height = spaceship.getHeight() * scale;
 		
 		RenderUtils.drawRotatedImage(gfx, spaceship.nextFrame(frame % 5 == 0), ship.getAngle(), ship.getLocation().getX() - (width / 2), ship.getLocation().getY() - (height / 2), width, height);
+		
+		gfx.setFill(Color.RED);
+		gfx.fillOval(ship.getLocation().getX(), ship.getLocation().getY(), 3, 3);
+		
+		Location mouse = InputManager.getManager().getCursorPosition();
+		gfx.fillOval(mouse.getX(), mouse.getY(), 3, 3);
+		
+		System.out.println("ANGLE: " + ship.getLocation().getAngle(mouse));
+		
 		
 	}
 

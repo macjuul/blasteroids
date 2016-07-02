@@ -5,7 +5,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import net.exodiusmc.blasteroids.Layer;
 import net.exodiusmc.blasteroids.Main;
 import net.exodiusmc.blasteroids.enums.LayerEffectType;

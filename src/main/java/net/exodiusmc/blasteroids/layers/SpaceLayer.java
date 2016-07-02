@@ -9,14 +9,15 @@ import net.exodiusmc.blasteroids.manager.MediaManager;
 import net.exodiusmc.blasteroids.utils.GeneralUtils;
 
 public class SpaceLayer extends Layer {
+	public double vel_x = 0;
+	public double vel_y = 0;
+	
 	private SpaceState state;
 	private double spaceWidth;
     private double spaceHeight;
     private int xStart;
     private int yStart;
-    private double vel_x = 0;
     private double pos_x = 0;
-    private double vel_y = 0;
     private double pos_y = 0;
     private double angle = 0;
     private float velocity_cap = 5f;
@@ -37,14 +38,16 @@ public class SpaceLayer extends Layer {
 	@Override
 	public void update(double delta, long frame) {
 		if(this.state == SpaceState.INPUT) {
-			this.vel_x += 0.05 * Math.sin(Math.toRadians(this.angle));		
-			this.vel_y += 0.05 * Math.cos(Math.toRadians(this.angle));
+			this.vel_x += 0.09 * Math.sin(Math.toRadians(this.angle));		
+			this.vel_y += 0.09 * Math.cos(Math.toRadians(this.angle));
 			
 			if(this.vel_x > this.velocity_cap) this.vel_x = this.velocity_cap;
+			if(this.vel_x < -this.velocity_cap) this.vel_x = -this.velocity_cap;
 			
 			if(this.vel_y > this.velocity_cap) this.vel_y = this.velocity_cap;
+			if(this.vel_y < -this.velocity_cap) this.vel_y = -this.velocity_cap;
 			
-			this.pos_x += this.vel_x;
+			this.pos_x -= this.vel_x;
 			this.pos_y += this.vel_y;
 			
 			xStart = (int) (((pos_x * 1.5) % spaceWidth) - spaceWidth);
