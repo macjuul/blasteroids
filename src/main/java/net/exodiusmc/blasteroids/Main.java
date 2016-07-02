@@ -63,6 +63,13 @@ public class Main extends Application {
 			"img/logo_32.png",
 			"img/space.png",
 			"img/splash.png",
+			"img/sound_lvl_0.png",
+			"img/sound_lvl_1.png",
+			"img/sound_lvl_2.png",
+			"img/sound_lvl_3.png",
+			"img/sound_lvl_4.png",
+			"img/sound_lvl_5.png",
+			"img/sound_lvl_6.png",
 			"img/icons/icon_128.png",
 			"img/icons/icon_32.png",
 			"img/icons/icon_16.png",
@@ -76,14 +83,16 @@ public class Main extends Application {
 			"img/ship/default.png",
 			"img/ship/exo_fighter.png",
 			"img/ship/green_flame.png",
-			"img/play_1.png",
-			"img/play_2.png",
-			"img/settings_1.png",
-			"img/settings_2.png",
-			"img/credits_1.png",
-			"img/credits_2.png",
-			"img/quit_1.png",
-			"img/quit_2.png",
+			"img/options/play_1.png",
+			"img/options/play_2.png",
+			"img/options/settings_1.png",
+			"img/options/settings_2.png",
+			"img/options/credits_1.png",
+			"img/options/credits_2.png",
+			"img/options/quit_1.png",
+			"img/options/quit_2.png",
+			"img/options/back_1.png",
+			"img/options/back_2.png",
 			"sounds/boost.wav",
 			"sounds/death.wav",
 			"sounds/gun.wav",
@@ -122,7 +131,7 @@ public class Main extends Application {
 	}
 	
 	public static String getVersion() {
-		return "0.2 PRE-ALPHA";
+		return "0.2.0 PRE-ALPHA";
 	}
 
 }
