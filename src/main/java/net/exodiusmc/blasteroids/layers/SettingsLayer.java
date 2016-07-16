@@ -133,7 +133,7 @@ public class SettingsLayer extends Layer {
 	public void render(GraphicsContext gfx) {
 	MediaManager mngr = MediaManager.getManager();
 		
-		Image splash = mngr.getImage("blasteroids_logo");
+		Image splash = mngr.getImage("lined_settings");
 		double ratio = splash.getHeight() / splash.getWidth();
 		double width = Main.WIDTH * 0.6, height = width * ratio;
 		
@@ -151,9 +151,9 @@ public class SettingsLayer extends Layer {
 		double offset = Main.HEIGHT * 0.1;
 		
 		if(item == 0) {
-			gfx.drawImage(mngr.getImage("play_2"), getOffsetX() + xStart, yStart, width, height);
+			gfx.drawImage(mngr.getImage("sound_lvl_6"), getOffsetX() + xStart, yStart, 150, 150);
 		} else {
-			gfx.drawImage(play, getOffsetX() + xStart, yStart, width, height);
+			gfx.drawImage(mngr.getImage("sound_lvl_6"), getOffsetX() + xStart, yStart, 150, 150);
 		}
 		
 		if(item == 1) {

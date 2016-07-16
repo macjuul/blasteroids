@@ -93,6 +93,7 @@ public class Main extends Application {
 			"img/options/quit_2.png",
 			"img/options/back_1.png",
 			"img/options/back_2.png",
+			"img/lined_settings.png",
 			"sounds/boost.wav",
 			"sounds/death.wav",
 			"sounds/gun.wav",
@@ -131,7 +132,7 @@ public class Main extends Application {
 	}
 	
 	public static String getVersion() {
-		return "0.2.0 PRE-ALPHA";
+		return "0.0.2 PRE-ALPHA";
 	}
 
 }
